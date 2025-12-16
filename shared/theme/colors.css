@@ -1,0 +1,79 @@
+:root {
+  /* Base Layout */
+  --bg-core: #121418;
+  --bg-surface: #1E2126;
+  --text-primary: #E0E6ED;
+  --text-muted: #9AA0A6;
+
+  /* Team Blue */
+  --blue-intense: #00C2FF;
+  --blue-dim: #4F7A8C;
+
+  /* Team Orange */
+  --orange-intense: #FF9000;
+  --orange-dim: #995A00;
+}
+
+/* Utility classes mapping to shared palette */
+.bg-core { background-color: var(--bg-core) !important; }
+.bg-surface { background-color: var(--bg-surface) !important; }
+.bg-surface-strong { background-color: color-mix(in srgb, var(--bg-surface) 90%, black 10%) !important; }
+.text-primary { color: var(--text-primary) !important; }
+.text-muted { color: var(--text-muted) !important; }
+.border-surface { border-color: var(--bg-surface) !important; }
+.border-surface-strong { border-color: color-mix(in srgb, var(--bg-surface) 80%, black 20%) !important; }
+.border-muted { border-color: var(--text-muted) !important; }
+
+.text-blue-intense { color: var(--blue-intense) !important; }
+.text-blue-dim { color: var(--blue-dim) !important; }
+.text-orange-intense { color: var(--orange-intense) !important; }
+.text-orange-dim { color: var(--orange-dim) !important; }
+.bg-blue-intense { background-color: var(--blue-intense) !important; }
+.bg-blue-dim { background-color: var(--blue-dim) !important; }
+.bg-orange-intense { background-color: var(--orange-intense) !important; }
+.bg-orange-dim { background-color: var(--orange-dim) !important; }
+
+.bg-blue-tint-30 { background-color: color-mix(in srgb, var(--blue-intense) 15%, transparent) !important; }
+.bg-blue-tint-20 { background-color: color-mix(in srgb, var(--blue-intense) 10%, transparent) !important; }
+.bg-orange-tint-30 { background-color: color-mix(in srgb, var(--orange-intense) 15%, transparent) !important; }
+.bg-orange-tint-20 { background-color: color-mix(in srgb, var(--orange-intense) 10%, transparent) !important; }
+
+/* Override common Tailwind utility colors to the shared palette */
+.bg-gray-900 { background-color: var(--bg-core) !important; }
+.bg-gray-800, .bg-gray-900\/70 { background-color: var(--bg-surface) !important; }
+.bg-gray-900\/50 { background-color: color-mix(in srgb, var(--bg-core) 50%, transparent) !important; }
+.bg-gray-900\/30 { background-color: color-mix(in srgb, var(--bg-core) 30%, transparent) !important; }
+.border-gray-800, .border-gray-700 { border-color: var(--bg-surface) !important; }
+.border-gray-600 { border-color: color-mix(in srgb, var(--bg-surface) 80%, var(--text-muted) 20%) !important; }
+.text-gray-100, .text-gray-200, .text-gray-300 { color: var(--text-primary) !important; }
+.text-gray-400, .text-gray-500 { color: var(--text-muted) !important; }
+.text-white { color: var(--text-primary) !important; }
+.placeholder-gray-500::placeholder { color: var(--text-muted) !important; }
+
+.text-blue-200, .text-blue-300, .text-blue-400 { color: var(--blue-intense) !important; }
+.bg-blue-600, .bg-blue-700 { background-color: var(--blue-intense) !important; }
+.hover\:bg-blue-700:hover { background-color: color-mix(in srgb, var(--blue-intense) 85%, black 15%) !important; }
+.focus\:ring-blue-500:focus { --tw-ring-color: var(--blue-intense) !important; }
+
+.text-orange-200, .text-orange-300, .text-orange-400 { color: var(--orange-intense) !important; }
+.bg-orange-900 { background-color: color-mix(in srgb, var(--orange-intense) 20%, black 80%) !important; }
+.bg-blue-900 { background-color: color-mix(in srgb, var(--blue-intense) 20%, black 80%) !important; }
+.text-purple-400 { color: var(--orange-intense) !important; }
+
+.bg-blue-950\/30 { background-color: color-mix(in srgb, var(--blue-intense) 15%, transparent) !important; }
+.bg-blue-950\/20 { background-color: color-mix(in srgb, var(--blue-intense) 10%, transparent) !important; }
+.bg-orange-950\/30 { background-color: color-mix(in srgb, var(--orange-intense) 15%, transparent) !important; }
+.bg-orange-950\/20 { background-color: color-mix(in srgb, var(--orange-intense) 10%, transparent) !important; }
+.bg-orange-900.text-orange-200 { background-color: color-mix(in srgb, var(--orange-intense) 20%, black 80%) !important; color: var(--orange-intense) !important; }
+.bg-blue-900.text-blue-200 { background-color: color-mix(in srgb, var(--blue-intense) 20%, black 80%) !important; color: var(--blue-intense) !important; }
+
+.icon-copy-colorable {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-color: red; /* Set icon color here */
+  -webkit-mask-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNvcHktaWNvbiBsdWNpZGUtY29weSI+PHJlY3Qgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiB4PSI4IiB5PSI4IiByeD0iMiIgcnk9IjIiLz48cGF0aCBkPSJNNCAxNmMtMS4xIDAtMi0uOS0yLTJWNGMwLTEuMS45LTIgMi0yaDEwYzEuMSAwIDIgLjkgMiAyIi8+PC9zdmc+');
+  mask-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNvcHktaWNvbiBsdWNpZGUtY29weSI+PHJlY3Qgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiB4PSI4IiB5PSI4IiByeD0iMiIgcnk9IjIiLz48cGF0aCBkPSJNNCAxNmMtMS4xIDAtMi0uOS0yLTJWNGMwLTEuMS45LTIgMi0yaDEwYzEuMSAwIDIgLjkgMiAyIi8+PC9zdmc+');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Match Results</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="../../../shared/theme/colors.css" />
+    <link rel="stylesheet" href="../../../shared/theme/github-corner.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .icon-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 9999px;
+        transition: background-color 150ms ease, color 150ms ease,
+          transform 80ms ease;
+        color: var(--text-primary);
+        background-color: color-mix(
+          in srgb,
+          var(--text-muted) 15%,
+          transparent
+        );
+      }
+
+      .icon-button:hover {
+        background-color: color-mix(
+          in srgb,
+          var(--text-muted) 35%,
+          transparent
+        );
+        color: var(--text-primary);
+      }
+
+      .icon-button:active {
+        background-color: color-mix(
+          in srgb,
+          var(--blue-intense) 45%,
+          transparent
+        );
+        transform: translateY(1px);
+      }
+
+      .session-badge {
+        background: color-mix(
+          in srgb,
+          var(--blue-intense) 10%,
+          var(--bg-surface) 90%
+        );
+        border: 1px solid
+          color-mix(in srgb, var(--blue-intense) 25%, var(--bg-surface) 75%);
+      }
+    </style>
+  </head>
+  <body class="bg-core text-primary min-h-screen">
+    <a
+      href="https://github.com/echotools/echovrce-api-sample-apps"
+      class="github-corner"
+      aria-label="View source on GitHub"
+      ><svg
+        width="80"
+        height="80"
+        viewBox="0 0 250 250"
+        style="
+          fill: #fff;
+          color: #151513;
+          position: absolute;
+          top: 0;
+          border: 0;
+          right: 0;
+        "
+        aria-hidden="true"
+      >
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z" />
+        <path
+          d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+          fill="currentColor"
+          style="transform-origin: 130px 106px"
+          class="octo-arm"
+        />
+        <path
+          d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+          fill="currentColor"
+          class="octo-body"
+        /></svg></a
+    ><style>
+      .github-corner:hover .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+      }
+      @keyframes octocat-wave {
+        0%,
+        100% {
+          transform: rotate(0);
+        }
+        20%,
+        60% {
+          transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+          transform: rotate(10deg);
+        }
+      }
+      @media (max-width: 500px) {
+        .github-corner:hover .octo-arm {
+          animation: none;
+        }
+        .github-corner .octo-arm {
+          animation: octocat-wave 560ms ease-in-out;
+        }
+      }
+    </style>
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+      <h1
+        class="text-4xl font-bold mb-6 text-center text-transparent"
+        style="
+          background: linear-gradient(
+            90deg,
+            var(--blue-intense),
+            var(--orange-intense)
+          );
+          -webkit-background-clip: text;
+          background-clip: text;
+        "
+      >
+        EchoVRCE Lobby Session Stats
+      </h1>
+
+      <div class="flex flex-col sm:flex-row gap-4 mb-6 max-w-2xl mx-auto">
+        <input
+          id="uuidInput"
+          type="text"
+          placeholder="Enter lobby session UUID"
+          class="flex-1 px-4 py-3 bg-surface border border-surface rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-intense text-primary placeholder:text-muted"
+        />
+        <button
+          id="fetchBtn"
+          class="px-6 py-3 bg-blue-dim hover:bg-blue-intense text-primary font-semibold rounded-lg transition-colors duration-200"
+        >
+          Fetch
+        </button>
+      </div>
+      <div
+        id="error"
+        class="text-orange-intense text-center mb-4 font-semibold"
+      ></div>
+      <div id="results"></div>
+    </div>
+    <script>
+      function copyToClipboard(text, element) {
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            // Visual feedback
+            const originalText = element.textContent;
+            const originalColor = element.style.color;
+            element.style.color = "var(--blue-intense)";
+            element.textContent = "✓ Copied!";
+
+            setTimeout(() => {
+              element.style.color = originalColor;
+              element.textContent = originalText;
+            }, 1000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy:", err);
+          });
+      }
+
+      async function fetchData() {
+        const rawInput = document.getElementById("uuidInput").value.trim();
+        const errorDiv = document.getElementById("error");
+        const resultsDiv = document.getElementById("results");
+        errorDiv.textContent = "";
+        resultsDiv.textContent = "";
+
+        // Extract UUID using regex (UUID format: 8-4-4-4-12 hex characters)
+        const uuidMatch = rawInput.match(
+          /([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})/
+        );
+        if (!uuidMatch) {
+          errorDiv.textContent = "Please enter a valid UUID.";
+          return;
+        }
+
+        const uuid = uuidMatch[1].toUpperCase();
+
+        // Update input field and URL hash
+        document.getElementById("uuidInput").value = uuid;
+        window.location.hash = uuid;
+        document.title = `Match Results: ${uuid}`;
+        const headerTitle = document.querySelector("h1");
+        if (headerTitle) headerTitle.textContent = `Match Results`;
+
+        errorDiv.textContent = "Loading...";
+        try {
+          uuidLower = uuid.toLowerCase();
+          const res = await fetch(
+            `https://g.echovrce.com/lobby-session-events/${uuidLower}`
+          );
+          if (!res.ok) throw new Error("Session not found or fetch error");
+          const data = await res.json();
+          errorDiv.textContent = "";
+          if (!data.events || !Array.isArray(data.events)) {
+            resultsDiv.innerHTML =
+              '<div class="text-center text-gray-400">No events found in session data.</div>';
+            return;
+          }
+          const frames = data.events
+            .map((e) => e.frame)
+            .filter((f) => f && f.session);
+
+          // Find latest frame with teams info
+          const framesWithTeams = frames.filter(
+            (f) => f.session && f.session.teams
+          );
+          const latestFrame = framesWithTeams.length
+            ? framesWithTeams[framesWithTeams.length - 1]
+            : null;
+          if (!latestFrame) {
+            resultsDiv.innerHTML =
+              '<div class="text-center text-gray-400">No team/player stats found in session data.</div>';
+            return;
+          }
+
+          // Collect end-of-round snapshots so we can render each round separately
+          let roundFrames = frames.filter(
+            (f) =>
+              Array.isArray(f.events) &&
+              f.events.some((ev) => ev && ev.roundEnded)
+          );
+
+          if (!roundFrames.length) {
+            roundFrames = frames.filter(
+              (f) =>
+                Array.isArray(f.events) &&
+                f.events.some((ev) => ev && ev.matchEnded)
+            );
+          }
+
+          if (!roundFrames.length) {
+            roundFrames = frames.filter(
+              (f) => f.session && f.session.game_status === "round_over"
+            );
+          }
+
+          roundFrames.sort((a, b) => {
+            const aIdx = Number.isFinite(a.frameIndex)
+              ? a.frameIndex
+              : Number.POSITIVE_INFINITY;
+            const bIdx = Number.isFinite(b.frameIndex)
+              ? b.frameIndex
+              : Number.POSITIVE_INFINITY;
+            if (aIdx !== bIdx) return aIdx - bIdx;
+            const aTime = a.timestamp ? new Date(a.timestamp).getTime() : 0;
+            const bTime = b.timestamp ? new Date(b.timestamp).getTime() : 0;
+            return aTime - bTime;
+          });
+          const totalRoundsPlanned =
+            latestFrame.session.total_round_count || roundFrames.length || 0;
+          const orangeMatchPoints = latestFrame.session.orange_points;
+          const blueMatchPoints = latestFrame.session.blue_points;
+          let matchWinnerText = "Tie";
+          let matchWinnerColor = "text-gray-300";
+          if (
+            Number.isFinite(orangeMatchPoints) &&
+            Number.isFinite(blueMatchPoints)
+          ) {
+            if (orangeMatchPoints > blueMatchPoints) {
+              matchWinnerText = "Orange Wins";
+              matchWinnerColor = "text-orange-300";
+            } else if (blueMatchPoints > orangeMatchPoints) {
+              matchWinnerText = "Blue Wins";
+              matchWinnerColor = "text-blue-300";
+            }
+          }
+
+          let html = ``;
+
+          /*
+          html += `<div class="bg-surface rounded-lg p-5 border border-surface mb-6">
+              <div class="flex flex-wrap items-start gap-3 justify-between">
+                <div>
+                  <div class="text-sm font-semibold text-muted uppercase tracking-wide mb-1">Lobby Session UUID</div>
+                  <div id="session-id" class="session-badge inline-flex items-center gap-3 px-4 py-2 rounded-lg text-xl font-bold text-primary">
+                    <span>${data.lobby_session_id}</span>
+                    <button id="copyLobbyLink" class="icon-button" title="Copy lobby link" aria-label="Copy lobby link">
+                      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" width="16" role="img"><path d="M7.75 1.5a.25.25 0 0 0-.25.25v1.5h1.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25zm-1.5 0v1.75c0 .69.56 1.25 1.25 1.25h1.75a1.75 1.75 0 0 0 1.75-1.75V1.5zm-2 4A1.75 1.75 0 0 1 6 3.75h3.25a.25.25 0 0 1 .25.25v1.75a1.75 1.75 0 0 1-1.75 1.75H6v1.75c0 .69-.56 1.25-1.25 1.25H3V6.5Z"></path><path d="M3.75 4a.25.25 0 0 1 .25.25v7c0 .138.112.25.25.25h5a.25.25 0 0 0 .25-.25v-1.5h1.5v1.5A1.75 1.75 0 0 1 9.25 12H4.5A1.75 1.75 0 0 1 2.75 10.25v-6A.25.25 0 0 1 3 4Z"></path></svg>
+                    </button>
+                  </div>
+
+                </div>
+                <div class="text-right text-sm text-muted">Updated: ${new Date(
+                  latestFrame.timestamp || Date.now()
+                ).toLocaleString()}</div>
+              </div>
+            </div>`;
+            */
+          // Match Outcome Section (per round rows)
+          html += `<div class="bg-surface rounded-lg p-6 border border-surface mb-6">
+      <div class="mb-4 pb-2 border-b border-surface">
+        <div class="flex items-center gap-3">
+          <span class="text-xl font-semibold text-gray-100">Match Outcome:</span>
+          <span class="text-xl font-semibold ${matchWinnerColor}">${matchWinnerText}</span>
+          <button id="copyMatchBtn" class="icon-button ml-2" title="Copy Match Results" aria-label="Copy Match Results">
+            <img src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNvcHktaWNvbiBsdWNpZGUtY29weSI+PHJlY3Qgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiB4PSI4IiB5PSI4IiByeD0iMiIgcnk9IjIiLz48cGF0aCBkPSJNNCAxNmMtMS4xIDAtMi0uOS0yLTJWNGMwLTEuMS45LTIgMi0yaDEwYzEuMSAwIDIgLjkgMiAyIi8+PC9zdmc+\" alt=\"Copy Icon\" width=\"20\" height=\"20\" style=\"display:inline;vertical-align:middle;\" />
+          </button>
+        </div>
+      </div>
+
+              <div class="flex flex-col items-stretch gap-3">
+                <div class="w-full bg-core rounded-lg border border-surface px-4 py-4">
+                  <div class="grid" style="grid-template-columns: repeat(${
+                    totalRoundsPlanned || 1
+                  }, minmax(0, 1fr)); gap: 8px;">
+                    ${Array.from({ length: totalRoundsPlanned || 1 })
+                      .map((_, idx) => {
+                        const frame = roundFrames[idx];
+                        if (!frame) {
+                          return `<div class="h-14 rounded-lg border-2 border-dashed border-gray-600 flex items-center justify-center text-xs text-gray-500">Not played</div>`;
+                        }
+                        const s = frame.session || {};
+                        const bluePts = s.blue_points ?? "N/A";
+                        const orangePts = s.orange_points ?? "N/A";
+                        const endTime = frame.timestamp
+                          ? new Date(frame.timestamp).toLocaleString()
+                          : "N/A";
+                        let winner = "";
+                        if (
+                          Number.isFinite(bluePts) &&
+                          Number.isFinite(orangePts)
+                        ) {
+                          if (bluePts > orangePts) winner = "blue";
+                          else if (orangePts > bluePts) winner = "orange";
+                          else winner = "tie";
+                        }
+                        const bgClass =
+                          winner === "blue"
+                            ? "bg-blue-950/30"
+                            : winner === "orange"
+                            ? "bg-orange-950/30"
+                            : "bg-gray-800";
+                        return `<div class="h-14 rounded-lg border border-gray-700 ${bgClass} flex items-center justify-center text-sm font-semibold text-gray-100" title="Ended: ${endTime}">
+                            <span class="text-3xl text-blue-300 mr-2">${bluePts}</span>
+                            <span class="text-gray-500 text-sm">-</span>
+                            <span class="text-3xl text-orange-300 ml-2">${orangePts}</span>
+                        
+                        </div>`;
+                      })
+                      .join("")}
+                  </div>
+                </div>
+
+
+              </div>
+            </div>`;
+
+          // Fetch player account details
+          const playerAccountMap = new Map();
+          const playerIds = new Set();
+
+          if (roundFrames.length) {
+            roundFrames.forEach((roundFrame) => {
+              const teams = roundFrame.session?.teams || [];
+              teams.forEach((team) => {
+                if (Array.isArray(team.players)) {
+                  team.players.forEach((player) => {
+                    if (player.userid) {
+                      playerIds.add(player.userid);
+                    }
+                  });
+                }
+              });
+            });
+          }
+
+          // Also collect player IDs from the latest frame
+          if (latestFrame && latestFrame.session && latestFrame.session.teams) {
+            latestFrame.session.teams.forEach((team) => {
+              if (Array.isArray(team.players)) {
+                team.players.forEach((player) => {
+                  if (player.userid) {
+                    playerIds.add(player.userid);
+                  }
+                });
+              }
+            });
+          }
+
+          // Fetch account details for all players
+          const accountPromises = Array.from(playerIds).map(async (userid) => {
+            try {
+              const xpId = `OVR-ORG-${userid}`;
+              const res = await fetch(
+                `https://g.echovrce.com/account/lookup?xp_id=${xpId}`
+              );
+              if (res.ok) {
+                const data = await res.json();
+                playerAccountMap.set(userid, data);
+              }
+            } catch (e) {
+              console.error(`Failed to fetch account for ${userid}:`, e);
+            }
+          });
+
+          await Promise.all(accountPromises);
+
+          if (roundFrames.length) {
+            // Accumulate player stats across all rounds
+            const playerStatsMap = new Map();
+            roundFrames.forEach((roundFrame) => {
+              const teams = roundFrame.session?.teams || [];
+              teams.forEach((team) => {
+                if (Array.isArray(team.players)) {
+                  team.players.forEach((player) => {
+                    const key = player.userid || player.name;
+                    if (!playerStatsMap.has(key)) {
+                      playerStatsMap.set(key, {
+                        name: player.name,
+                        userid: player.userid,
+                        team: team.team,
+                        stats: {},
+                      });
+                    }
+                    const accumulated = playerStatsMap.get(key);
+                    if (player.stats) {
+                      Object.entries(player.stats).forEach(
+                        ([statKey, value]) => {
+                          if (typeof value === "number") {
+                            accumulated.stats[statKey] =
+                              (accumulated.stats[statKey] || 0) + value;
+                          }
+                        }
+                      );
+                    }
+                  });
+                }
+              });
+            });
+
+            // Display accumulated player stats summary
+            html += `<div class="bg-surface rounded-lg p-6 border border-surface mb-6">
+                <h3 class="text-xl font-semibold mb-4 pb-2 border-b border-surface text-blue-intense">Player Stats Summary (All Rounds)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
+
+            const blueTeamPlayers = [];
+            const orangeTeamPlayers = [];
+            playerStatsMap.forEach((playerData) => {
+              if (playerData.team === "BLUE TEAM")
+                blueTeamPlayers.push(playerData);
+              else if (playerData.team === "ORANGE TEAM")
+                orangeTeamPlayers.push(playerData);
+            });
+
+            // Always render blue team left, orange team right
+            html += `<div class="bg-blue-tint-30 rounded-lg p-4">
+                  <h4 class="text-lg font-semibold mb-3 text-blue-intense">Blue Team</h4>`;
+            if (blueTeamPlayers.length === 0) {
+              html += `<div class="text-muted text-md mb-4">No players found for this team.</div>`;
+            } else {
+              blueTeamPlayers.forEach((playerData) => {
+                const account = playerAccountMap.get(playerData.userid);
+                const avatarUrl = account?.avatar_url || "";
+                const username = account?.username || "";
+                const discordId = account?.discord_id || "";
+                const echovrceId = account?.id || "";
+
+                html += `<div class="mb-3 pb-3 border-b border-gray-700 last:border-b-0 relative group">
+                    <div class="font-semibold text-gray-200 mb-2 flex items-center gap-2">
+                      ${
+                        avatarUrl
+                          ? `<img src="${avatarUrl}" class="w-6 h-6 rounded-full" alt="${playerData.name}">`
+                          : ""
+                      }
+                      <span>${playerData.name || "Unknown"}</span>
+                    </div>
+                    ${
+                      account
+                        ? `<div class="hidden group-hover:block absolute left-0 top-full mt-2 bg-gray-800 border border-gray-600 rounded-lg p-4 shadow-lg z-10 min-w-[300px]">
+                      <div class="flex items-center gap-3 mb-3">
+                        ${
+                          avatarUrl
+                            ? `<img src="${avatarUrl}" class="w-16 h-16 rounded-full" alt="${playerData.name}">`
+                            : ""
+                        }
+                        <div>
+                          <div class="font-semibold text-gray-100 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${
+                            playerData.name
+                          }', this)" title="Click to copy">${
+                            playerData.name
+                          }</div>
+                          <div class="text-sm text-gray-400 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${username}', this)" title="Click to copy">@${username}</div>
+                        </div>
+                      </div>
+                      <div class="text-xs space-y-1">
+                        <div><span class="text-gray-400">Discord ID:</span> <span class="text-gray-200 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${discordId}', this)" title="Click to copy">${discordId}</span></div>
+                        <div><span class="text-gray-400">EchoVRCE ID:</span> <span class="text-gray-200 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${echovrceId}', this)" title="Click to copy">${echovrceId}</span></div>
+                        <div><span class="text-gray-400">User ID:</span> <span class="text-gray-200 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${
+                          playerData.userid
+                        }', this)" title="Click to copy">${
+                            playerData.userid
+                          }</span></div>
+                      </div>
+                    </div>`
+                        : ""
+                    }
+                    <div class="grid grid-cols-3 gap-2 text-base">`;
+
+                Object.entries(playerData.stats).forEach(([key, value]) => {
+                  html += `<div class="text-sm"><span class="text-gray-400">${key}:</span> <span class="text-gray-200">${
+                    typeof value === "number" ? Math.round(value) : value
+                  }</span></div>`;
+                });
+
+                html += `</div></div>`;
+              });
+            }
+            html += `</div>`; // close blue col
+
+            html += `<div class="bg-orange-tint-30 rounded-lg p-4">
+                  <h4 class="text-lg font-semibold mb-3 text-orange-intense">Orange Team</h4>`;
+            if (orangeTeamPlayers.length === 0) {
+              html += `<div class="text-muted text-md mb-4">No players found for this team.</div>`;
+            } else {
+              orangeTeamPlayers.forEach((playerData) => {
+                const account = playerAccountMap.get(playerData.userid);
+                const avatarUrl = account?.avatar_url || "";
+                const username = account?.username || "";
+                const discordId = account?.discord_id || "";
+                const echovrceId = account?.id || "";
+
+                html += `<div class="mb-3 pb-3 border-b border-gray-700 last:border-b-0 relative group">
+                    <div class="font-semibold text-gray-200 mb-2 flex items-center gap-2">
+                      ${
+                        avatarUrl
+                          ? `<img src="${avatarUrl}" class="w-6 h-6 rounded-full" alt="${playerData.name}">`
+                          : ""
+                      }
+                      <span>${playerData.name || "Unknown"}</span>
+                    </div>
+                    ${
+                      account
+                        ? `<div class="hidden group-hover:block absolute left-0 top-full mt-2 bg-gray-800 border border-gray-600 rounded-lg p-4 shadow-lg z-10 min-w-[300px]">
+                      <div class="flex items-center gap-3 mb-3">
+                        ${
+                          avatarUrl
+                            ? `<img src="${avatarUrl}" class="w-16 h-16 rounded-full" alt="${playerData.name}">`
+                            : ""
+                        }
+                        <div>
+                          <div class="font-semibold text-gray-100 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${
+                            playerData.name
+                          }', this)" title="Click to copy">${
+                            playerData.name
+                          }</div>
+                          <div class="text-sm text-gray-400 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${username}', this)" title="Click to copy">@${username}</div>
+                        </div>
+                      </div>
+                      <div class="text-xs space-y-1">
+                        <div><span class="text-gray-400">Discord ID:</span> <span class="text-gray-200 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${discordId}', this)" title="Click to copy">${discordId}</span></div>
+                        <div><span class="text-gray-400">EchoVRCE ID:</span> <span class="text-gray-200 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${echovrceId}', this)" title="Click to copy">${echovrceId}</span></div>
+                        <div><span class="text-gray-400">User ID:</span> <span class="text-gray-200 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${
+                          playerData.userid
+                        }', this)" title="Click to copy">${
+                            playerData.userid
+                          }</span></div>
+                      </div>
+                    </div>`
+                        : ""
+                    }
+                    <div class="grid grid-cols-3 gap-2 text-base">`;
+
+                Object.entries(playerData.stats).forEach(([key, value]) => {
+                  html += `<div class="text-sm"><span class="text-gray-400">${key}:</span> <span class="text-gray-200">${
+                    typeof value === "number" ? Math.round(value) : value
+                  }</span></div>`;
+                });
+
+                html += `</div></div>`;
+              });
+            }
+            html += `</div>`; // close orange col
+
+            html += `</div></div>`;
+
+            // Display rounds with per-round stats
+            html += `<div class="bg-surface rounded-lg p-6 border border-surface mb-6">
+                <h3 class="text-xl font-semibold mb-4 pb-2 border-b border-surface text-blue-intense">Rounds Breakdown</h3>`;
+
+            roundFrames.forEach((roundFrame, idx) => {
+              const session = roundFrame.session || {};
+              const bluePoints = session.blue_points ?? 0;
+              const orangePoints = session.orange_points ?? 0;
+              const blueRounds = session.blue_round_score ?? 0;
+              const orangeRounds = session.orange_round_score ?? 0;
+              const totalRounds = session.total_round_count ?? 0;
+              const roundTime = roundFrame.timestamp
+                ? new Date(roundFrame.timestamp).toLocaleString()
+                : "N/A";
+
+              let winner = "";
+              if (
+                Number.isFinite(bluePoints) &&
+                Number.isFinite(orangePoints)
+              ) {
+                if (bluePoints > orangePoints) winner = "Blue win";
+                else if (orangePoints > bluePoints) winner = "Orange win";
+                else winner = "Tie";
+              }
+
+              const winnerBadge = winner
+                ? `<span class="text-lg px-3 py-1 rounded-full ml-3 ${
+                    winner.startsWith("Blue")
+                      ? "bg-blue-900 text-blue-200"
+                      : winner.startsWith("Orange")
+                      ? "bg-orange-900 text-orange-200"
+                      : "bg-gray-800 text-gray-300"
+                  }">${winner}</span>`
+                : "";
+
+              html += `<div class="bg-core rounded-lg p-4 mb-4 border border-surface">
+                  <div class="flex items-center mb-3">
+                    <div class="text-xl font-semibold text-gray-200">Round ${
+                      idx + 1
+                    } </div>
+                    ${winnerBadge}
+                  </div>
+                  <div class="text-3xl font-bold text-gray-100 mb-2">${bluePoints} - ${orangePoints}</div>
+                  <div class="text-sm text-gray-400 mb-1">Best of ${totalRounds} </div>
+                  <div class="text-xs text-gray-500 mb-4">Ended: ${roundTime}</div>`;
+
+              // Display team stats for this round
+              const teams = session.teams || [];
+              if (teams.length > 0) {
+                html += `<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">`;
+                teams.forEach((team) => {
+                  if (team.team === "SPECTATORS") return;
+                  const teamColor =
+                    team.team === "BLUE TEAM" ? "blue" : "orange";
+                  const teamBg =
+                    team.team === "BLUE TEAM"
+                      ? "bg-blue-950/20"
+                      : "bg-orange-950/20";
+                  html += `<div class="${teamBg} rounded p-3">
+                      <div class="font-semibold text-${teamColor}-400 mb-2">${team.team} Stats</div>`;
+
+                  if (team.stats) {
+                    html += `<div class="grid grid-cols-2 gap-1 text-sm">`;
+                    Object.entries(team.stats).forEach(([key, value]) => {
+                      html += `<div><span class="text-gray-400">${key}:</span> <span class="text-gray-200">${
+                        typeof value === "number" ? Math.round(value) : value
+                      }</span></div>`;
+                    });
+                    html += `</div>`;
+                  }
+
+                  html += `</div>`;
+                });
+                html += `</div>`;
+
+                // Display player stats for this round
+                html += `<div class="border-t border-gray-700 pt-3"><div class="text-sm font-semibold text-gray-300 mb-2">Player Stats</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">`;
+
+                teams.forEach((team) => {
+                  if (
+                    team.team === "SPECTATORS" ||
+                    !Array.isArray(team.players)
+                  )
+                    return;
+
+                  html += `<div class="flex flex-col gap-2">`;
+                  const teamColor =
+                    team.team === "BLUE TEAM" ? "blue" : "orange";
+                  const playerBg =
+                    teamColor === "blue"
+                      ? "bg-blue-950/20"
+                      : "bg-orange-950/20";
+
+                  team.players.forEach((player) => {
+                    const account = playerAccountMap.get(player.userid);
+                    const avatarUrl = account?.avatar_url || "";
+                    const username = account?.username || "";
+                    const discordId = account?.discord_id || "";
+                    const echovrceId = account?.id || "";
+
+                    html += `<div class="${playerBg} min-h-[12rem] rounded p-2 relative group">
+                        <div class="font-semibold text-${teamColor}-300 text-sm mb-1 flex items-center gap-2">
+                          ${
+                            avatarUrl
+                              ? `<img src="${avatarUrl}" class="w-5 h-5 rounded-full" alt="${player.name}">`
+                              : ""
+                          }
+                          <span>${player.name || "Unknown"}</span>
+                        </div>
+                        ${
+                          account
+                            ? `<div class="hidden group-hover:block absolute left-0 top-full mt-2 bg-gray-800 border border-gray-600 rounded-lg p-4 shadow-lg z-10 min-w-[300px]">
+                          <div class="flex items-center gap-3 mb-3">
+                            ${
+                              avatarUrl
+                                ? `<img src="${avatarUrl}" class="w-16 h-16 rounded-full" alt="${player.name}">`
+                                : ""
+                            }
+                            <div>
+                              <div class="font-semibold text-gray-100 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${
+                                player.name
+                              }', this)" title="Click to copy">${
+                                player.name
+                              }</div>
+                              <div class="text-sm text-gray-400 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${username}', this)" title="Click to copy">@${username}</div>
+                            </div>
+                          </div>
+                          <div class="text-xs space-y-1">
+                            <div><span class="text-gray-400">Discord ID:</span> <span class="text-gray-200 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${discordId}', this)" title="Click to copy">${discordId}</span></div>
+                            <div><span class="text-gray-400">EchoVRCE ID:</span> <span class="text-gray-200 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('${echovrceId}', this)" title="Click to copy">${echovrceId}</span></div>
+                            <div><span class="text-gray-400">XP ID:</span> <span class="text-gray-200 cursor-pointer hover:text-blue-300 transition-colors" onclick="copyToClipboard('OVR-ORG-${
+                              player.userid
+                            }', this)" title="Click to copy">OVR-ORG-${
+                                player.userid
+                              }</span></div>
+                          </div>
+                        </div>`
+                            : ""
+                        }
+                      `;
+
+                    if (player.stats) {
+                      html += `<div class="grid grid-cols-2 gap-1 text-sm">`;
+                      Object.entries(player.stats).forEach(([key, value]) => {
+                        html += `<div><span class="text-gray-400">${key}:</span> <span class="text-gray-200">${
+                          typeof value === "number" ? Math.round(value) : value
+                        }</span></div>`;
+                      });
+                      html += `</div>`;
+                    }
+
+                    html += `</div>`;
+                  });
+                  html += `</div>`;
+                });
+
+                html += `</div></div>`;
+              }
+
+              html += `</div>`;
+            });
+
+            html += "</div>";
+          }
+
+          resultsDiv.innerHTML = html;
+
+          const copyIconSvg =
+            '<svg aria-hidden="true" height="16" viewBox="0 0 16 16" width="16" role="img"><path d="M7.75 1.5a.25.25 0 0 0-.25.25v1.5h1.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25zm-1.5 0v1.75c0 .69.56 1.25 1.25 1.25h1.75a1.75 1.75 0 0 0 1.75-1.75V1.5zm-2 4A1.75 1.75 0 0 1 6 3.75h3.25a.25.25 0 0 1 .25.25v1.75a1.75 1.75 0 0 1-1.75 1.75H6v1.75c0 .69-.56 1.25-1.25 1.25H3V6.5Z"></path><path d="M3.75 4a.25.25 0 0 1 .25.25v7c0 .138.112.25.25.25h5a.25.25 0 0 0 .25-.25v-1.5h1.5v1.5A1.75 1.75 0 0 1 9.25 12H4.5A1.75 1.75 0 0 1 2.75 10.25v-6A.25.25 0 0 1 3 4Z"></path></svg>';
+          const checkIconSvg =
+            '<svg aria-hidden="true" height="16" viewBox="0 0 16 16" width="16" role="img"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0l-3-3a.75.75 0 0 1 1.06-1.06L6.5 10.19l5.72-5.72a.75.75 0 0 1 1.06 0Z"></path></svg>';
+
+          // Add event listener for copy match outcome button
+          const copyBtn = document.getElementById("copyMatchBtn");
+          if (copyBtn) {
+            copyBtn.onclick = function () {
+              const session = latestFrame.session;
+              let text = `Results for ${session.match_type || "N/A"} Match\n`;
+              text += `=======================================\n\n`;
+              text += `ID: ${data.lobby_session_id}\n`;
+
+              if (roundFrames && roundFrames.length > 0) {
+                roundFrames.forEach((frame, idx) => {
+                  const s = frame.session;
+                  text += `R${idx + 1}:  Blue ${s.blue_points}, Orange ${
+                    s.orange_points
+                  }\n`;
+                });
+                text += `\n`;
+              }
+
+              text += `View full stats: ${window.location.href}`;
+
+              navigator.clipboard
+                .writeText(text)
+                .then(() => {
+                  this.innerHTML = checkIconSvg;
+                  this.style.backgroundColor =
+                    "color-mix(in srgb, var(--blue-intense) 35%, transparent)";
+
+                  setTimeout(() => {
+                    this.innerHTML = copyIconSvg;
+                    this.style.backgroundColor = "";
+                  }, 1000);
+                })
+                .catch((err) => {
+                  console.error("Failed to copy:", err);
+                });
+            };
+          }
+
+          // Copy lobby link button
+          const copyLobbyBtn = document.getElementById("copyLobbyLink");
+          if (copyLobbyBtn) {
+            copyLobbyBtn.onclick = function () {
+              navigator.clipboard
+                .writeText(window.location.href)
+                .then(() => {
+                  this.innerHTML = checkIconSvg;
+                  this.style.backgroundColor =
+                    "color-mix(in srgb, var(--blue-intense) 35%, transparent)";
+                  setTimeout(() => {
+                    this.innerHTML = copyIconSvg;
+                    this.style.backgroundColor = "";
+                  }, 1000);
+                })
+                .catch((err) => console.error("Failed to copy:", err));
+            };
+          }
+        } catch (e) {
+          errorDiv.textContent = e.message;
+        }
+      }
+
+      document.getElementById("fetchBtn").onclick = fetchData;
+
+      // Check for UUID in URL hash on page load
+      window.addEventListener("DOMContentLoaded", function () {
+        const hash = window.location.hash.substring(1); // Remove the '#' symbol
+        if (hash) {
+          document.getElementById("uuidInput").value = hash;
+          fetchData();
+        }
+      });
+    </script>
+  </body>
+</html>
