@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Match Results (GraphQL v3)</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="../shared/theme/colors.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .icon-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 9999px;
+        transition: background-color 150ms ease, color 150ms ease,
+          transform 80ms ease;
+        color: var(--text-primary);
+        background-color: color-mix(
+          in srgb,
+          var(--text-muted) 15%,
+          transparent
+        );
+      }
+      .icon-button:hover {
+        background-color: color-mix(
+          in srgb,
+          var(--text-muted) 35%,
+          transparent
+        );
+        color: var(--text-primary);
+      }
+      .session-badge {
+        background: color-mix(
+          in srgb,
+          var(--blue-intense) 10%,
+          var(--bg-surface) 90%
+        );
+        border: 1px solid
+          color-mix(in srgb, var(--blue-intense) 25%, var(--bg-surface) 75%);
+      }
+      .graphql-badge {
+        background: linear-gradient(135deg, #e535ab 0%, #ff6b6b 100%);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 10px;
+        font-weight: bold;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    </style>
+  </head>
+  <body class="bg-core text-primary min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+      <h1
+        class="text-4xl font-bold mb-2 text-center text-transparent"
+        style="
+          background: linear-gradient(
+            90deg,
+            var(--blue-intense),
+            var(--orange-intense)
+          );
+          -webkit-background-clip: text;
+          background-clip: text;
+        "
+      >
+        EchoVRCE Match Results
+      </h1>
+      <p class="text-center text-muted mb-6">
+        <span class="graphql-badge">GraphQL v3</span>
+        Powered by the new GraphQL API
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 mb-6 max-w-2xl mx-auto">
+        <input
+          id="uuidInput"
+          type="text"
+          placeholder="Enter lobby session UUID"
+          class="flex-1 px-4 py-3 bg-surface border border-surface rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-intense text-primary placeholder:text-muted"
+        />
+        <button
+          id="fetchBtn"
+          class="px-6 py-3 bg-blue-dim hover:bg-blue-intense text-primary font-semibold rounded-lg transition-colors duration-200"
+        >
+          Fetch
+        </button>
+      </div>
+
+      <div
+        id="error"
+        class="text-orange-intense text-center mb-4 font-semibold"
+      ></div>
+      <div id="results"></div>
+
+      <!-- GraphQL Query Preview -->
+      <details class="mt-8 bg-surface rounded-lg p-4 border border-surface">
+        <summary class="cursor-pointer text-muted font-semibold">
+          View GraphQL Query
+        </summary>
+        <pre
+          id="queryPreview"
+          class="mt-4 p-4 bg-core rounded text-sm overflow-x-auto text-gray-300"
+        ></pre>
+      </details>
+    </div>
+
+    <script>
+      // GraphQL API endpoint
+      const GRAPHQL_ENDPOINT = "https://g.echovrce.com/v3/query";
+
+      // GraphQL query for fetching session events
+      const SESSION_EVENTS_QUERY = `
+        query GetSessionEvents($lobbySessionId: ID!, $limit: Int, $offset: Int) {
+          sessionEvents(lobbySessionId: $lobbySessionId, limit: $limit, offset: $offset) {
+            edges {
+              node {
+                id
+                lobbySessionId
+                userId
+                frameData
+                timestamp
+                createdAt
+              }
+              cursor
+            }
+            pageInfo {
+              hasNextPage
+              hasPreviousPage
+              startCursor
+              endCursor
+            }
+            totalCount
+          }
+          health {
+            status
+            database
+          }
+        }
+      `;
+
+      // Execute GraphQL query
+      async function executeGraphQL(query, variables) {
+        const response = await fetch(GRAPHQL_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query,
+            variables,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`GraphQL request failed: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.errors && result.errors.length > 0) {
+          throw new Error(result.errors.map((e) => e.message).join(", "));
+        }
+
+        return result.data;
+      }
+
+      async function fetchData() {
+        const rawInput = document.getElementById("uuidInput").value.trim();
+        const errorDiv = document.getElementById("error");
+        const resultsDiv = document.getElementById("results");
+        const queryPreview = document.getElementById("queryPreview");
+
+        errorDiv.textContent = "";
+        resultsDiv.textContent = "";
+
+        // Extract UUID
+        const uuidMatch = rawInput.match(
+          /([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})/
+        );
+        if (!uuidMatch) {
+          errorDiv.textContent = "Please enter a valid UUID.";
+          return;
+        }
+
+        const uuid = uuidMatch[1].toLowerCase();
+        document.getElementById("uuidInput").value = uuid;
+        window.location.hash = uuid;
+        document.title = `Match Results: ${uuid}`;
+
+        // Show the query being executed
+        const variables = { lobbySessionId: uuid, limit: 1000, offset: 0 };
+        queryPreview.textContent = `Query:\n${SESSION_EVENTS_QUERY}\n\nVariables:\n${JSON.stringify(
+          variables,
+          null,
+          2
+        )}`;
+
+        errorDiv.textContent = "Loading via GraphQL...";
+
+        try {
+          const data = await executeGraphQL(SESSION_EVENTS_QUERY, variables);
+          errorDiv.textContent = "";
+
+          if (
+            !data.sessionEvents ||
+            !data.sessionEvents.edges ||
+            data.sessionEvents.edges.length === 0
+          ) {
+            resultsDiv.innerHTML =
+              '<div class="text-center text-gray-400">No events found for this session.</div>';
+            return;
+          }
+
+          // Extract frames from GraphQL response
+          const frames = data.sessionEvents.edges
+            .map((edge) => edge.node.frameData)
+            .filter((f) => f && f.session);
+
+          // Find frames with teams
+          const framesWithTeams = frames.filter(
+            (f) => f.session && f.session.teams
+          );
+          const latestFrame = framesWithTeams.length
+            ? framesWithTeams[framesWithTeams.length - 1]
+            : null;
+
+          if (!latestFrame) {
+            resultsDiv.innerHTML =
+              '<div class="text-center text-gray-400">No team/player stats found in session data.</div>';
+            return;
+          }
+
+          // Find round end frames
+          let roundFrames = frames.filter(
+            (f) =>
+              Array.isArray(f.events) &&
+              f.events.some((ev) => ev && ev.roundEnded)
+          );
+
+          if (!roundFrames.length) {
+            roundFrames = frames.filter(
+              (f) =>
+                Array.isArray(f.events) &&
+                f.events.some((ev) => ev && ev.matchEnded)
+            );
+          }
+
+          if (!roundFrames.length) {
+            roundFrames = frames.filter(
+              (f) => f.session && f.session.game_status === "round_over"
+            );
+          }
+
+          roundFrames.sort((a, b) => {
+            const aIdx = Number.isFinite(a.frameIndex)
+              ? a.frameIndex
+              : Number.POSITIVE_INFINITY;
+            const bIdx = Number.isFinite(b.frameIndex)
+              ? b.frameIndex
+              : Number.POSITIVE_INFINITY;
+            return aIdx - bIdx;
+          });
+
+          // Calculate match outcome
+          const totalRoundsPlanned =
+            latestFrame.session.total_round_count || roundFrames.length || 0;
+          const orangeMatchPoints = latestFrame.session.orange_points;
+          const blueMatchPoints = latestFrame.session.blue_points;
+
+          let matchWinnerText = "Tie";
+          let matchWinnerColor = "text-gray-300";
+          if (
+            Number.isFinite(orangeMatchPoints) &&
+            Number.isFinite(blueMatchPoints)
+          ) {
+            if (orangeMatchPoints > blueMatchPoints) {
+              matchWinnerText = "Orange Wins";
+              matchWinnerColor = "text-orange-300";
+            } else if (blueMatchPoints > orangeMatchPoints) {
+              matchWinnerText = "Blue Wins";
+              matchWinnerColor = "text-blue-300";
+            }
+          }
+
+          // Build results HTML
+          let html = `
+            <div class="bg-surface rounded-lg p-6 border border-surface mb-6">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <span class="text-sm text-muted">Session ID</span>
+                  <div class="session-badge inline-block px-3 py-1 rounded text-sm font-mono">${uuid}</div>
+                </div>
+                <div class="text-right">
+                  <span class="text-sm text-muted">Total Events</span>
+                  <div class="text-lg font-bold text-primary">${data.sessionEvents.totalCount}</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-xl font-semibold text-gray-100">Match Outcome:</span>
+                <span class="text-xl font-semibold ${matchWinnerColor}">${matchWinnerText}</span>
+              </div>
+            </div>
+          `;
+
+          // Round scores grid
+          html += `
+            <div class="bg-surface rounded-lg p-6 border border-surface mb-6">
+              <h3 class="text-lg font-semibold mb-4 text-blue-intense">Round Scores</h3>
+              <div class="grid gap-2" style="grid-template-columns: repeat(${
+                totalRoundsPlanned || 1
+              }, minmax(0, 1fr));">
+          `;
+
+          for (let idx = 0; idx < totalRoundsPlanned; idx++) {
+            const frame = roundFrames[idx];
+            if (!frame) {
+              html += `<div class="h-14 rounded-lg border-2 border-dashed border-gray-600 flex items-center justify-center text-xs text-gray-500">Not played</div>`;
+              continue;
+            }
+
+            const s = frame.session || {};
+            const bluePts = s.blue_points ?? "N/A";
+            const orangePts = s.orange_points ?? "N/A";
+
+            let winner = "";
+            if (Number.isFinite(bluePts) && Number.isFinite(orangePts)) {
+              if (bluePts > orangePts) winner = "blue";
+              else if (orangePts > bluePts) winner = "orange";
+            }
+
+            const bgClass =
+              winner === "blue"
+                ? "bg-blue-950/30"
+                : winner === "orange"
+                ? "bg-orange-950/30"
+                : "bg-gray-800";
+
+            html += `
+              <div class="h-14 rounded-lg border border-gray-700 ${bgClass} flex items-center justify-center">
+                <span class="text-2xl text-blue-300 mr-2">${bluePts}</span>
+                <span class="text-gray-500">-</span>
+                <span class="text-2xl text-orange-300 ml-2">${orangePts}</span>
+              </div>
+            `;
+          }
+
+          html += `</div></div>`;
+
+          // Player stats summary
+          if (roundFrames.length) {
+            const playerStatsMap = new Map();
+
+            roundFrames.forEach((roundFrame) => {
+              const teams = roundFrame.session?.teams || [];
+              teams.forEach((team) => {
+                if (Array.isArray(team.players)) {
+                  team.players.forEach((player) => {
+                    const key = player.userid || player.name;
+                    if (!playerStatsMap.has(key)) {
+                      playerStatsMap.set(key, {
+                        name: player.name,
+                        userid: player.userid,
+                        team: team.team,
+                        stats: {},
+                      });
+                    }
+                    const accumulated = playerStatsMap.get(key);
+                    if (player.stats) {
+                      Object.entries(player.stats).forEach(
+                        ([statKey, value]) => {
+                          if (typeof value === "number") {
+                            accumulated.stats[statKey] =
+                              (accumulated.stats[statKey] || 0) + value;
+                          }
+                        }
+                      );
+                    }
+                  });
+                }
+              });
+            });
+
+            const blueTeamPlayers = [];
+            const orangeTeamPlayers = [];
+            playerStatsMap.forEach((playerData) => {
+              if (playerData.team === "BLUE TEAM")
+                blueTeamPlayers.push(playerData);
+              else if (playerData.team === "ORANGE TEAM")
+                orangeTeamPlayers.push(playerData);
+            });
+
+            html += `
+              <div class="bg-surface rounded-lg p-6 border border-surface">
+                <h3 class="text-lg font-semibold mb-4 text-blue-intense">Player Stats Summary</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            `;
+
+            // Blue team
+            html += `<div class="bg-blue-950/20 rounded-lg p-4">
+              <h4 class="text-lg font-semibold mb-3 text-blue-300">Blue Team</h4>`;
+
+            blueTeamPlayers.forEach((player) => {
+              html += `
+                <div class="mb-3 pb-3 border-b border-gray-700 last:border-b-0">
+                  <div class="font-semibold text-gray-200 mb-2">${
+                    player.name || "Unknown"
+                  }</div>
+                  <div class="grid grid-cols-3 gap-2 text-sm">
+              `;
+              Object.entries(player.stats).forEach(([key, value]) => {
+                html += `<div><span class="text-gray-400">${key}:</span> <span class="text-gray-200">${
+                  typeof value === "number" ? Math.round(value) : value
+                }</span></div>`;
+              });
+              html += `</div></div>`;
+            });
+
+            html += `</div>`;
+
+            // Orange team
+            html += `<div class="bg-orange-950/20 rounded-lg p-4">
+              <h4 class="text-lg font-semibold mb-3 text-orange-300">Orange Team</h4>`;
+
+            orangeTeamPlayers.forEach((player) => {
+              html += `
+                <div class="mb-3 pb-3 border-b border-gray-700 last:border-b-0">
+                  <div class="font-semibold text-gray-200 mb-2">${
+                    player.name || "Unknown"
+                  }</div>
+                  <div class="grid grid-cols-3 gap-2 text-sm">
+              `;
+              Object.entries(player.stats).forEach(([key, value]) => {
+                html += `<div><span class="text-gray-400">${key}:</span> <span class="text-gray-200">${
+                  typeof value === "number" ? Math.round(value) : value
+                }</span></div>`;
+              });
+              html += `</div></div>`;
+            });
+
+            html += `</div></div></div>`;
+          }
+
+          resultsDiv.innerHTML = html;
+        } catch (e) {
+          errorDiv.textContent = `Error: ${e.message}`;
+          console.error("GraphQL fetch error:", e);
+        }
+      }
+
+      document.getElementById("fetchBtn").onclick = fetchData;
+
+      window.addEventListener("DOMContentLoaded", function () {
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+          document.getElementById("uuidInput").value = hash;
+          fetchData();
+        }
+      });
+    </script>
+  </body>
+</html>
