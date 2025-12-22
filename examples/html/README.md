@@ -6,6 +6,7 @@ This directory contains HTML/JavaScript examples demonstrating API usage.
 
 | Example | Description |
 |---------|-------------|
+| [leaderboard](leaderboard/) | Leaderboard views with user lookup |
 | [matchmakerstatus](matchmakerstatus/) | Display matchmaker queue status |
 | [matchresults](matchresults/) | Query and display match results via GraphQL |
 | [playerloudness](playerloudness/) | Player voice chat loudness indicator |

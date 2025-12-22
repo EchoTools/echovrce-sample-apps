@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaderboard Records</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../shared/leaderboard.js"></script>
+    <link rel="stylesheet" href="../shared/theme/colors.css" />
+    <link rel="stylesheet" href="../shared/theme/github-corner.css" />
+  </head>
+  <body class="bg-gray-900 text-gray-100 min-h-screen">
+    <!-- GitHub Corner -->
+    <a
+      href="https://github.com/EchoTools/echovrce-sample-apps"
+      class="github-corner"
+      aria-label="View source on GitHub"
+    >
+      <svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path
+          d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+          class="octo-arm"
+        ></path>
+        <path
+          d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+          class="octo-body"
+        ></path>
+      </svg>
+    </a>
+
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+      <!-- Header -->
+      <header class="mb-8">
+        <h1 class="text-3xl font-bold text-center text-blue-400">
+          Leaderboard Records
+        </h1>
+        <p class="text-center text-gray-400 mt-2">
+          View leaderboard rankings by stat name
+        </p>
+      </header>
+
+      <!-- Search/Config Section -->
+      <section class="bg-gray-800 rounded-lg p-6 border border-gray-700 mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-gray-200">Configuration</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <!-- User Search -->
+          <div>
+            <label class="block text-sm text-gray-400 mb-2"
+              >Search User (optional)</label
+            >
+            <input
+              type="text"
+              id="userSearch"
+              placeholder="Username, Discord ID, or UUID"
+              class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <!-- Stat Name -->
+          <div>
+            <label class="block text-sm text-gray-400 mb-2">Stat Name</label>
+            <input
+              type="text"
+              id="statName"
+              placeholder="e.g., Goals, Saves, Points"
+              class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <!-- Reset Schedule -->
+          <div>
+            <label class="block text-sm text-gray-400 mb-2"
+              >Reset Schedule</label
+            >
+            <select
+              id="resetSchedule"
+              class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="alltime">All Time</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
+          </div>
+
+          <!-- From Rank -->
+          <div>
+            <label class="block text-sm text-gray-400 mb-2">From Rank</label>
+            <input
+              type="number"
+              id="fromRank"
+              value="1"
+              min="1"
+              class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <!-- Limit -->
+          <div>
+            <label class="block text-sm text-gray-400 mb-2">Limit</label>
+            <input
+              type="number"
+              id="limit"
+              value="100"
+              min="1"
+              max="1000"
+              class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <button
+            id="fetchBtn"
+            class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold"
+          >
+            Fetch Leaderboard
+          </button>
+          <a
+            id="apiLink"
+            href="#"
+            target="_blank"
+            class="px-6 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 font-semibold inline-flex items-center gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            View Raw API
+          </a>
+        </div>
+
+        <div id="errorMsg" class="mt-4 text-red-400 hidden"></div>
+      </section>
+
+      <!-- User Info Card (shown when searching for a user) -->
+      <section
+        id="userInfoCard"
+        class="bg-gray-800 rounded-lg p-6 border border-gray-700 mb-8 hidden"
+      >
+        <h2 class="text-xl font-semibold mb-4 text-gray-200">User Info</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div>
+            <p class="text-sm text-gray-400">Display Name</p>
+            <p id="userDisplayName" class="text-lg font-semibold text-blue-400">
+              --
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-400">Username</p>
+            <p id="userUsername" class="text-lg font-mono text-gray-200">--</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-400">Rank</p>
+            <p id="userRank" class="text-lg font-bold text-orange-400">--</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-400">Score</p>
+            <p id="userScore" class="text-lg font-mono text-green-400">--</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Leaderboard Table -->
+      <section class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+        <h2 class="text-xl font-semibold mb-4 text-gray-200">
+          Rankings - <span id="statHeader" class="text-blue-400">--</span>
+          <span id="scheduleHeader" class="text-gray-500 text-sm ml-2"
+            >(--)</span
+          >
+        </h2>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="text-gray-400 text-sm border-b border-gray-700">
+                <th class="pb-3 pr-4 w-16">Rank</th>
+                <th class="pb-3 pr-4">Name</th>
+                <th class="pb-3 pr-4 text-right">Score</th>
+                <th class="pb-3 text-right">Count</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard" class="text-gray-300">
+              <tr>
+                <td colspan="4" class="py-8 text-center text-gray-500">
+                  Configure options above and click "Fetch Leaderboard"
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-6 flex justify-center gap-4">
+          <button
+            id="prevBtn"
+            data-cursor=""
+            class="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
+            ← Previous
+          </button>
+          <button
+            id="nextBtn"
+            data-cursor=""
+            class="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
+            Next →
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const API_BASE = "https://g.echovrce.com";
+      const GUILD_ID = "779349159852769310";
+      const GAME_MODE = "echo_arena";
+
+      // Check hash on load
+      function checkHash() {
+        if (window.location.hash) {
+          const hashVal = decodeURIComponent(window.location.hash.substring(1));
+          if (hashVal) {
+            document.getElementById("userSearch").value = hashVal;
+          }
+        }
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        checkHash();
+
+        // Check URL params for backwards compatibility
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("stat_name")) {
+          document.getElementById("statName").value =
+            urlParams.get("stat_name");
+        }
+        if (urlParams.get("reset_schedule")) {
+          document.getElementById("resetSchedule").value =
+            urlParams.get("reset_schedule");
+        }
+        if (urlParams.get("from_rank")) {
+          document.getElementById("fromRank").value =
+            urlParams.get("from_rank");
+        }
+
+        // Auto-fetch if we have required params
+        if (document.getElementById("statName").value) {
+          fetchLeaderboard();
+        }
+      });
+
+      window.addEventListener("hashchange", checkHash);
+
+      // Determine input type for user search
+      function getSearchParamKey(input) {
+        const uuidRegex =
+          /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+        const discordRegex = /^\d{17,19}$/;
+
+        if (uuidRegex.test(input)) return "user_id";
+        if (discordRegex.test(input)) return "discord_id";
+        return "username";
+      }
+
+      // Lookup user account
+      async function lookupUser(input) {
+        const paramKey = getSearchParamKey(input);
+        const url = `${API_BASE}/account/lookup?${paramKey}=${encodeURIComponent(
+          input
+        )}`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("User not found");
+        return await response.json();
+      }
+
+      // Build API URL
+      function buildApiUrl(cursor = "") {
+        const statName = document.getElementById("statName").value.trim();
+        const resetSchedule = document.getElementById("resetSchedule").value;
+        const fromRank = document.getElementById("fromRank").value || "1";
+        const limit = document.getElementById("limit").value || "100";
+
+        const params = new URLSearchParams({
+          guild_id: GUILD_ID,
+          game_mode: GAME_MODE,
+          stat_name: statName,
+          reset_schedule: resetSchedule,
+          from_rank: fromRank,
+          limit: limit,
+        });
+
+        if (cursor) params.append("cursor", cursor);
+
+        return `${API_BASE}/leaderboard/records?${params.toString()}`;
+      }
+
+      // Fetch leaderboard data
+      async function fetchLeaderboard(cursor = "") {
+        const statName = document.getElementById("statName").value.trim();
+        const errorDiv = document.getElementById("errorMsg");
+        const userSearch = document.getElementById("userSearch").value.trim();
+
+        errorDiv.classList.add("hidden");
+        errorDiv.textContent = "";
+
+        if (!statName) {
+          errorDiv.textContent = "Please enter a stat name";
+          errorDiv.classList.remove("hidden");
+          return;
+        }
+
+        // Update hash if user search is provided
+        if (userSearch) {
+          const encoded = encodeURIComponent(userSearch);
+          if (window.location.hash.substring(1) !== encoded) {
+            window.location.hash = encoded;
+          }
+        }
+
+        try {
+          // Lookup user if provided
+          let userData = null;
+          if (userSearch) {
+            try {
+              userData = await lookupUser(userSearch);
+            } catch (e) {
+              errorDiv.textContent = "User not found";
+              errorDiv.classList.remove("hidden");
+            }
+          }
+
+          const url = buildApiUrl(cursor);
+          document.getElementById("apiLink").href = url;
+
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`API error: ${response.status}`);
+
+          const data = await response.json();
+          displayLeaderboard(data.records, userData);
+
+          // Update pagination
+          const prevBtn = document.getElementById("prevBtn");
+          const nextBtn = document.getElementById("nextBtn");
+
+          prevBtn.dataset.cursor = data.prev_cursor || "";
+          nextBtn.dataset.cursor = data.next_cursor || "";
+          prevBtn.disabled = !data.prev_cursor;
+          nextBtn.disabled = !data.next_cursor;
+        } catch (error) {
+          console.error("Error:", error);
+          errorDiv.textContent = error.message;
+          errorDiv.classList.remove("hidden");
+        }
+      }
+
+      // Display leaderboard
+      function displayLeaderboard(records, userData) {
+        const statName = document.getElementById("statName").value;
+        const resetSchedule = document.getElementById("resetSchedule").value;
+
+        document.getElementById("statHeader").textContent = statName;
+        document.getElementById(
+          "scheduleHeader"
+        ).textContent = `(${resetSchedule})`;
+
+        const tbody = document.getElementById("leaderboard");
+        const userInfoCard = document.getElementById("userInfoCard");
+
+        if (!records || records.length === 0) {
+          tbody.innerHTML =
+            '<tr><td colspan="4" class="py-8 text-center text-gray-500">No records found</td></tr>';
+          userInfoCard.classList.add("hidden");
+          return;
+        }
+
+        // Find user in records if we have userData
+        let userRecord = null;
+        if (userData) {
+          userRecord = records.find(
+            (r) => r.owner_id === userData.id || r.user_id === userData.id
+          );
+        }
+
+        // Show user info card if we found the user
+        if (userRecord) {
+          userInfoCard.classList.remove("hidden");
+          document.getElementById("userDisplayName").textContent =
+            userRecord.username?.value || userData.display_name || "--";
+          document.getElementById("userUsername").textContent =
+            userData.username || "--";
+          document.getElementById(
+            "userRank"
+          ).textContent = `#${userRecord.rank}`;
+          const score = formatDecodedScore(
+            userRecord.score,
+            userRecord.subscore || 0
+          );
+          document.getElementById("userScore").textContent = score;
+        } else {
+          userInfoCard.classList.add("hidden");
+        }
+
+        tbody.innerHTML = records
+          .map((record) => {
+            const score = formatDecodedScore(
+              record.score,
+              record.subscore || 0
+            );
+            const isHighlighted =
+              userRecord &&
+              (record.owner_id === userRecord.owner_id ||
+                record.user_id === userRecord.user_id);
+            const highlightClass = isHighlighted
+              ? "bg-blue-900/30"
+              : "hover:bg-gray-700/30";
+
+            return `
+            <tr class="border-b border-gray-700/50 ${highlightClass}">
+              <td class="py-3 pr-4">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full ${
+                  record.rank <= 3
+                    ? record.rank === 1
+                      ? "bg-yellow-500/20 text-yellow-400"
+                      : record.rank === 2
+                      ? "bg-gray-400/20 text-gray-300"
+                      : "bg-orange-600/20 text-orange-400"
+                    : "bg-gray-700 text-gray-400"
+                } font-bold text-sm">
+                  ${record.rank}
+                </span>
+              </td>
+              <td class="py-3 pr-4 font-medium">${
+                record.username?.value || "Unknown"
+              }</td>
+              <td class="py-3 pr-4 text-right font-mono text-blue-400">${score}</td>
+              <td class="py-3 text-right text-gray-400">${
+                record.num_score || 0
+              }</td>
+            </tr>
+          `;
+          })
+          .join("");
+      }
+
+      // Event listeners
+      document
+        .getElementById("fetchBtn")
+        .addEventListener("click", () => fetchLeaderboard());
+      document.getElementById("prevBtn").addEventListener("click", (e) => {
+        const cursor = e.target.dataset.cursor;
+        if (cursor) fetchLeaderboard(cursor);
+      });
+      document.getElementById("nextBtn").addEventListener("click", (e) => {
+        const cursor = e.target.dataset.cursor;
+        if (cursor) fetchLeaderboard(cursor);
+      });
+
+      // Enter key support
+      document.getElementById("statName").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") fetchLeaderboard();
+      });
+      document
+        .getElementById("userSearch")
+        .addEventListener("keypress", (e) => {
+          if (e.key === "Enter") fetchLeaderboard();
+        });
+    </script>
+  </body>
+</html>
