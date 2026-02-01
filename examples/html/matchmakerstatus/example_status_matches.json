@@ -1,0 +1,2171 @@
+{
+	"uptime_mins": 139,
+	"update_time": "2025-12-16T01:19:47Z",
+	"lobby_session_count": 15,
+	"gameserver_count": 50,
+	"player_count": 79,
+	"active_matchmaking_counts": {
+		"147afc9d-2819-4197-926d-5b3f92790edc": {
+			"echo_arena": 7
+		}
+	},
+	"labels": [
+		{
+			"id": "b0f63807-598d-459e-bf9a-0d72f81735a7.nakama2_us-east",
+			"open": true,
+			"lobby_type": "public",
+			"mode": "echo_arena",
+			"level": "mpl_arena_a",
+			"size": 6,
+			"player_count": 6,
+			"players": [
+				{
+					"display_name": "Tremmings421",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "aussiemumma",
+					"discord_id": "708482069017264188",
+					"user_id": "87578c26-edd4-4010-904f-96b6594858e7",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Slick",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "zver1273",
+					"discord_id": "788792569512329258",
+					"user_id": "eda9e492-568e-4fa2-bc9d-63cc7ba08a08",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Its Just a Dream",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "bunzeater.",
+					"discord_id": "1006703790361169920",
+					"user_id": "4b94404d-5d3a-4d6a-9bfd-09dcabaf021b",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Pilgrims Paradise",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "unyvrsl",
+					"discord_id": "901863904349683784",
+					"user_id": "2ffa8d46-99ac-4bab-b152-6bc33923e902",
+					"evr_id": ""
+				},
+				{
+					"display_name": "NorthShoreRoastBEAST",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "mttecumseh",
+					"discord_id": "422821338994966528",
+					"user_id": "4b3d61f0-efa4-48a9-984f-adb8d8bacaea",
+					"evr_id": ""
+				},
+				{
+					"display_name": "nevisSt.Nick",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "mr.sheriff4287",
+					"discord_id": "743011863826006017",
+					"user_id": "f232bb0d-8285-4b2c-9e3a-007cb0cc16aa",
+					"evr_id": ""
+				}
+			],
+			"rating_mu": 10,
+			"game_state": {
+				"blue_score": 0,
+				"orange_score": 2,
+				"session_scoreboard": {
+					"game_time_ns": 6960741000,
+					"round_duration_ns": 300000000000,
+					"updated_at": "2025-12-16T01:19:47.54325363Z",
+					"pause_duration_ns": 33000000000
+				},
+				"teams": {
+					"0": {
+						"strength": 30,
+						"predict_win": 0.5
+					},
+					"1": {
+						"strength": 30,
+						"predict_win": 0.5
+					}
+				}
+			},
+			"team_size": 4,
+			"limit": 16,
+			"player_limit": 8,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "00000000-0000-0000-0000-000000000000",
+			"start_time": "2025-12-16T01:17:46.918344227Z",
+			"created_at": "2025-12-16T01:17:46.901607075Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "9e87510d-5072-4c57-aef3-88b572c4e1a3",
+				"group_ids": [
+					"147afc9d-2819-4197-926d-5b3f92790edc",
+					"cd099a49-7ce0-4561-8684-50c0f7600c3f"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-pa-harrisburg",
+				"region": "PA",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "f4642612-1fac-4cc6-bc2a-7730d54deaf9.nakama2_us-east",
+			"open": true,
+			"lobby_type": "public",
+			"mode": "echo_arena",
+			"level": "mpl_arena_a",
+			"size": 8,
+			"player_count": 8,
+			"players": [
+				{
+					"display_name": "timmy toughknuckles",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "nickz1499",
+					"discord_id": "997307963976974528",
+					"user_id": "0f22e1e3-b904-4b8f-89a7-dff35b0e3531",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Kfitz",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "kfitz",
+					"discord_id": "196337212244099072",
+					"user_id": "676205d3-2d06-41d5-92a0-2be87f380d97",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Small_.Fry",
+					"party_id": "17479394-bfc3-5df2-a703-31ce03338a74",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "christmas_obese_elfs",
+					"discord_id": "883747969621459054",
+					"user_id": "1f4bf760-3be2-4774-a04b-09c900b629a8",
+					"evr_id": ""
+				},
+				{
+					"display_name": "ApplJaks",
+					"party_id": "17479394-bfc3-5df2-a703-31ce03338a74",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "certified_apple",
+					"discord_id": "683410925985857714",
+					"user_id": "e12171ac-7c57-4bd4-9440-cd0bca12f196",
+					"evr_id": ""
+				},
+				{
+					"display_name": "teekoh",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": ".teekoh",
+					"discord_id": "239911951918956544",
+					"user_id": "7f3e32b1-8220-4f75-92a2-9b072281c178",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Posch",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "posch_e",
+					"discord_id": "834993001490022412",
+					"user_id": "31dab07e-9478-4b7a-832e-83557efb2a13",
+					"evr_id": ""
+				},
+				{
+					"display_name": "alenn",
+					"party_id": "ea545e65-5359-5f79-b466-37bc98f51af7",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "alenniscol",
+					"discord_id": "647871240723234878",
+					"user_id": "9d854e1f-5fef-4048-a39e-d9fbf3eaa87c",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Jonah-_-",
+					"party_id": "ea545e65-5359-5f79-b466-37bc98f51af7",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "j6onah",
+					"discord_id": "819623227159740478",
+					"user_id": "8e5250e9-3bfd-4d13-9572-7807a8fdca04",
+					"evr_id": ""
+				}
+			],
+			"rating_mu": 10,
+			"game_state": {
+				"blue_score": 2,
+				"orange_score": 0,
+				"session_scoreboard": {
+					"game_time_ns": 76001417635,
+					"round_duration_ns": 300000000000,
+					"updated_at": "2025-12-16T01:19:47.54295597Z",
+					"pause_duration_ns": 33000000000
+				},
+				"teams": {
+					"0": {
+						"strength": 40,
+						"predict_win": 0.5
+					},
+					"1": {
+						"strength": 40,
+						"predict_win": 0.5
+					}
+				}
+			},
+			"team_size": 4,
+			"limit": 16,
+			"player_limit": 8,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "00000000-0000-0000-0000-000000000000",
+			"start_time": "2025-12-16T01:17:17.032429703Z",
+			"created_at": "2025-12-16T01:17:17.000602543Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "09d26c55-23f3-41aa-9dd1-2307c451f312",
+				"group_ids": [
+					"6ec4851f-bcec-464a-b7c1-104bb6793d3f",
+					"147afc9d-2819-4197-926d-5b3f92790edc"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-va-winchester",
+				"region": "VA",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "dd52dff9-3819-47e4-ae9b-c058b04b3c21.nakama2_us-east",
+			"open": true,
+			"lobby_type": "public",
+			"mode": "echo_arena",
+			"level": "mpl_arena_a",
+			"size": 5,
+			"player_count": 5,
+			"players": [
+				{
+					"display_name": "Darwiener",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "angrybottles",
+					"discord_id": "604510276401889282",
+					"user_id": "83890614-3470-4cc5-8efd-615472c8f955",
+					"evr_id": ""
+				},
+				{
+					"display_name": "nixi-",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "nixi124",
+					"discord_id": "610497104766566401",
+					"user_id": "10d18e7a-c73a-4ccf-b438-0d361d24abd1",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Bartholomew Wigglesworth",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "aiusdhowiaushd",
+					"discord_id": "558047635559153685",
+					"user_id": "12d1bfec-1f63-490e-b329-5b00bc899117",
+					"evr_id": ""
+				},
+				{
+					"display_name": "-trapxtoast-",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "trapxtoast",
+					"discord_id": "1244767334519013380",
+					"user_id": "0ded7d4e-cce2-48a1-9063-05fc4bca5f06",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Prodigy-",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "quarvv",
+					"discord_id": "1220473093001052170",
+					"user_id": "0bf6cf27-1e07-43a4-ba33-a027508b27e8",
+					"evr_id": ""
+				}
+			],
+			"rating_mu": 10,
+			"game_state": {
+				"blue_score": 0,
+				"orange_score": 4,
+				"session_scoreboard": {
+					"game_time_ns": 83782638694,
+					"round_duration_ns": 300000000000,
+					"updated_at": "2025-12-16T01:19:47.54309546Z",
+					"pause_duration_ns": 33000000000
+				},
+				"teams": {
+					"0": {
+						"strength": 20,
+						"predict_win": 0.4024703787638901
+					},
+					"1": {
+						"strength": 30,
+						"predict_win": 0.5975296212361099
+					}
+				}
+			},
+			"team_size": 4,
+			"limit": 16,
+			"player_limit": 8,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "00000000-0000-0000-0000-000000000000",
+			"start_time": "2025-12-16T01:16:16.926147479Z",
+			"created_at": "2025-12-16T01:16:16.880481784Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "09d26c55-23f3-41aa-9dd1-2307c451f312",
+				"group_ids": [
+					"6ec4851f-bcec-464a-b7c1-104bb6793d3f",
+					"147afc9d-2819-4197-926d-5b3f92790edc"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-va-winchester",
+				"region": "VA",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "23d4382b-2f9a-4858-adb5-6325a590588b.nakama2_us-east",
+			"open": true,
+			"lobby_type": "public",
+			"mode": "echo_arena",
+			"level": "mpl_arena_a",
+			"size": 8,
+			"player_count": 8,
+			"players": [
+				{
+					"display_name": "1!1 O",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"join_time_ns": -64998,
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "imfromistagrambro",
+					"discord_id": "1222615178110304296",
+					"user_id": "d88ebb93-4d0b-4e7b-a794-106986f9270e",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Publix",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"join_time_ns": -64996,
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "publix12",
+					"discord_id": "516598406945177600",
+					"user_id": "db1d2eb3-c54a-45ef-86cb-d1be43ce5c94",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Robot07vr",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"join_time_ns": -64995,
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "cruz_1234567",
+					"discord_id": "1311066220182765568",
+					"user_id": "110290d0-b199-4125-af8a-334c5bb0bad0",
+					"evr_id": ""
+				},
+				{
+					"display_name": "jolly",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"join_time_ns": -64995,
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "ccloudss",
+					"discord_id": "663433994498736149",
+					"user_id": "3974cb93-d2fd-4509-8bd1-27d960a470ff",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Zen",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"join_time_ns": -64997,
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "zensterx",
+					"discord_id": "1076616739594440804",
+					"user_id": "bccd597c-583f-4f66-8b1a-036b31fb6286",
+					"evr_id": ""
+				},
+				{
+					"display_name": "4tray",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"join_time_ns": -64995,
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "fatboy4tray",
+					"discord_id": "862366957885194241",
+					"user_id": "b3425ca5-f6f5-4f0f-9c1f-21b98c33b328",
+					"evr_id": ""
+				},
+				{
+					"display_name": "kiramman",
+					"party_id": "b6e213a1-2829-5cf1-b82c-4f8d6ecc0f20",
+					"team": "orange",
+					"join_time_ns": -64996,
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "wafflez_t",
+					"discord_id": "1299833980065026160",
+					"user_id": "3c49b692-76a2-455f-89d7-8b8be28bb74e",
+					"evr_id": ""
+				},
+				{
+					"display_name": "huda",
+					"party_id": "b6e213a1-2829-5cf1-b82c-4f8d6ecc0f20",
+					"team": "orange",
+					"join_time_ns": -64995,
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "swayy_ae",
+					"discord_id": "872537786828341299",
+					"user_id": "e60db947-e889-475f-965e-b67d16d8ff09",
+					"evr_id": ""
+				}
+			],
+			"rating_mu": 10,
+			"game_state": {
+				"blue_score": 2,
+				"orange_score": 0,
+				"session_scoreboard": {
+					"game_time_ns": 112262939000,
+					"round_duration_ns": 300000000000,
+					"updated_at": "2025-12-16T01:19:47.54339903Z",
+					"pause_duration_ns": 33000000000
+				},
+				"teams": {
+					"0": {
+						"strength": 40,
+						"predict_win": 0.5
+					},
+					"1": {
+						"strength": 40,
+						"predict_win": 0.5
+					}
+				}
+			},
+			"team_size": 4,
+			"limit": 16,
+			"player_limit": 8,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "00000000-0000-0000-0000-000000000000",
+			"start_time": "2025-12-16T01:15:46.933294399Z",
+			"created_at": "2025-12-16T01:15:46.932642388Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "4bc2624a-8306-4e1e-807d-a8a3d08c4f0d",
+				"group_ids": [
+					"147afc9d-2819-4197-926d-5b3f92790edc",
+					"c67fa242-31d8-4cb1-937a-ad6763343e21"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-ar-batesville",
+				"region": "AR",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "7dc39e78-cb41-45fb-85c3-486232197c91.nakama2_us-east",
+			"open": true,
+			"lobby_type": "public",
+			"mode": "echo_arena",
+			"level": "mpl_arena_a",
+			"size": 8,
+			"player_count": 8,
+			"players": [
+				{
+					"display_name": "PhillycheeseSTEAK",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "phillycheese_09",
+					"discord_id": "1046141003058397224",
+					"user_id": "44c7de03-b509-44b1-b87a-3d46a1eb0004",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Jayykol",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "zanden0382_53796",
+					"discord_id": "1337599059912822866",
+					"user_id": "98c2f7a8-fe23-4966-9ce4-09c62c612b3d",
+					"evr_id": ""
+				},
+				{
+					"display_name": "LOPER",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "usmcpikachu",
+					"discord_id": "687486378573168673",
+					"user_id": "110f2402-1e4c-47c7-b96f-34287f986cac",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Christmas bachira",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "uknownvr",
+					"discord_id": "969376738339610665",
+					"user_id": "374793d1-c983-41a9-b656-518d91cc3b25",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Mcbubbles  L",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "manifest0845",
+					"discord_id": "1427127442270851144",
+					"user_id": "92325a2a-81be-485f-a559-95f5813b5f1d",
+					"evr_id": ""
+				},
+				{
+					"display_name": "thehumbletruth",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "lind0r.",
+					"discord_id": "1251032835037597788",
+					"user_id": "819dc918-b027-4c7c-af8a-692fe8cd71f4",
+					"evr_id": ""
+				},
+				{
+					"display_name": "ECO_angelcherri",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "angelcherri_",
+					"discord_id": "780509850459045909",
+					"user_id": "7b54abbf-7e8b-4b59-9c89-5c39d7cd1db0",
+					"evr_id": ""
+				},
+				{
+					"display_name": "spongebob06678",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "spongebob06678",
+					"discord_id": "1450277547979046972",
+					"user_id": "cadd99c0-d3e5-4f64-88db-8128c12169d9",
+					"evr_id": ""
+				}
+			],
+			"rating_mu": 10,
+			"game_state": {
+				"blue_score": 3,
+				"orange_score": 3,
+				"session_scoreboard": {
+					"game_time_ns": 164871744152,
+					"round_duration_ns": 300000000000,
+					"updated_at": "2025-12-16T01:19:47.543772111Z",
+					"pause_duration_ns": 33000000000
+				},
+				"teams": {
+					"0": {
+						"strength": 40,
+						"predict_win": 0.5
+					},
+					"1": {
+						"strength": 40,
+						"predict_win": 0.5
+					}
+				}
+			},
+			"team_size": 4,
+			"limit": 16,
+			"player_limit": 8,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "00000000-0000-0000-0000-000000000000",
+			"start_time": "2025-12-16T01:14:23.525032327Z",
+			"created_at": "2025-12-16T01:14:23.515057188Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "4bc2624a-8306-4e1e-807d-a8a3d08c4f0d",
+				"group_ids": [
+					"147afc9d-2819-4197-926d-5b3f92790edc",
+					"c67fa242-31d8-4cb1-937a-ad6763343e21"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-ar-batesville",
+				"region": "AR",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "b195003e-3d98-47be-9bcc-fedb2132b48e.nakama2_us-east",
+			"open": true,
+			"lobby_type": "public",
+			"mode": "echo_arena",
+			"level": "mpl_arena_a",
+			"size": 9,
+			"player_count": 8,
+			"players": [
+				{
+					"display_name": "MrCheese0031",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "mrcheese0031",
+					"discord_id": "1051266863746785304",
+					"user_id": "80a4aba7-306f-44df-a3ce-64a3d7f3feb5",
+					"evr_id": ""
+				},
+				{
+					"display_name": "KillJoy-",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "killjoy3634",
+					"discord_id": "833208715309613066",
+					"user_id": "c5c4d9ec-f247-4b8b-ac89-e42e4b97d2fa",
+					"evr_id": ""
+				},
+				{
+					"display_name": "The-Flapjack321",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "the_flapjack321",
+					"discord_id": "790244858107396147",
+					"user_id": "fa1b354d-e998-43d4-be7f-35238fd8d450",
+					"evr_id": ""
+				},
+				{
+					"display_name": "MrStealYoGirl",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "yeetslegacyvr",
+					"discord_id": "539598532131291147",
+					"user_id": "daa86d92-66ca-4b68-a6d6-c128dbc94223",
+					"evr_id": ""
+				},
+				{
+					"display_name": "trilads",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "trilads",
+					"discord_id": "923208841674518568",
+					"user_id": "f35223b5-a13b-4fdb-97d0-d8faf55ff654",
+					"evr_id": ""
+				},
+				{
+					"display_name": "crude.",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "siconolfi.",
+					"discord_id": "1285327695491760170",
+					"user_id": "2dfc1355-03ef-4b78-9ed2-6a53553601fc",
+					"evr_id": ""
+				},
+				{
+					"display_name": "zapatater",
+					"party_id": "3c103bf5-9bb0-5cfe-b078-8fc7a6bc1868",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "zapatater",
+					"discord_id": "1223548469843853325",
+					"user_id": "78494c16-bafa-43b4-9dee-f9406fdd2caf",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Erebus",
+					"party_id": "3c103bf5-9bb0-5cfe-b078-8fc7a6bc1868",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "aiden.x",
+					"discord_id": "818653005134037032",
+					"user_id": "f8063841-4d73-404a-a3fa-b39224ace7e3",
+					"evr_id": ""
+				},
+				{
+					"display_name": "he_is_the_cat",
+					"team": "spectator",
+					"join_time_ns": 23186,
+					"username": "he_is_the_cat",
+					"discord_id": "800101527305846855",
+					"user_id": "6ec216a9-d73b-46fc-ac7e-72c703ed4fbb",
+					"evr_id": ""
+				}
+			],
+			"rating_mu": 10,
+			"game_state": {
+				"blue_score": 6,
+				"orange_score": 2,
+				"session_scoreboard": {
+					"game_time_ns": 48681812000,
+					"round_duration_ns": 300000000000,
+					"updated_at": "2025-12-16T01:19:47.543638311Z",
+					"pause_duration_ns": 33000000000
+				},
+				"teams": {
+					"0": {
+						"strength": 40,
+						"predict_win": 0.5
+					},
+					"1": {
+						"strength": 40,
+						"predict_win": 0.5
+					}
+				}
+			},
+			"team_size": 4,
+			"limit": 16,
+			"player_limit": 8,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "00000000-0000-0000-0000-000000000000",
+			"start_time": "2025-12-16T01:14:22.302102305Z",
+			"created_at": "2025-12-16T01:14:22.227499811Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "0cf5b35f-f802-4652-8657-91557a516086",
+				"group_ids": [
+					"147afc9d-2819-4197-926d-5b3f92790edc"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-tn-murfreesboro",
+				"region": "TN",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "1ee94d91-a82f-4ea7-9bed-644d08d03c2c.nakama2_us-east",
+			"open": false,
+			"locked_at": "2025-12-16T01:19:13.860554945Z",
+			"lobby_type": "public",
+			"mode": "echo_arena",
+			"level": "mpl_arena_a",
+			"size": 6,
+			"player_count": 5,
+			"players": [
+				{
+					"display_name": "The Noodle Of Doom",
+					"party_id": "6d53369b-d126-595c-816e-1933db9c3a13",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "the_noodle_of_doom",
+					"discord_id": "1245996810024259626",
+					"user_id": "411f8903-f9b8-4c64-b5da-c0195c948ca0",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Tech0_0",
+					"party_id": "6d53369b-d126-595c-816e-1933db9c3a13",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "tech0_0",
+					"discord_id": "688118438333382703",
+					"user_id": "d5f4453c-c420-4595-bd02-ab5c83bfde77",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Symboli Rudolf",
+					"party_id": "f1703831-4fd7-52f8-9750-c32524d80c7f",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "iambucketyuh",
+					"discord_id": "833853650815680524",
+					"user_id": "5bdc0f3a-52d0-4850-87a7-8973bdbfb647",
+					"evr_id": ""
+				},
+				{
+					"display_name": "festive-femboy",
+					"party_id": "f1703831-4fd7-52f8-9750-c32524d80c7f",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": ".pandaboi.",
+					"discord_id": "1315220783232192512",
+					"user_id": "513b18d4-d3bc-4546-9601-772247eede4d",
+					"evr_id": ""
+				},
+				{
+					"display_name": "NovaBoba",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": ".void0826",
+					"discord_id": "1031324965519233024",
+					"user_id": "5bc2de18-d7d1-4052-97c6-5234674e4015",
+					"evr_id": ""
+				},
+				{
+					"display_name": "echospecbot",
+					"team": "spectator",
+					"join_time_ns": -39061,
+					"username": "echospecbot",
+					"discord_id": "1038700373709443082",
+					"user_id": "e71ba855-c054-4153-a557-dcc2f4fbbca5",
+					"evr_id": ""
+				}
+			],
+			"rating_mu": 10,
+			"game_state": {
+				"blue_score": 12,
+				"orange_score": 0,
+				"session_scoreboard": {
+					"game_time_ns": 146797453493,
+					"round_duration_ns": 300000000000,
+					"updated_at": "2025-12-16T01:19:47.543955772Z",
+					"pause_duration_ns": 33000000000
+				},
+				"teams": {
+					"0": {
+						"strength": 40,
+						"predict_win": 0.7419909428510002
+					},
+					"1": {
+						"strength": 10,
+						"predict_win": 0.2580090571489998
+					}
+				}
+			},
+			"team_size": 4,
+			"limit": 16,
+			"player_limit": 8,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "00000000-0000-0000-0000-000000000000",
+			"start_time": "2025-12-16T01:12:16.960725116Z",
+			"created_at": "2025-12-16T01:12:16.936352544Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "0cf5b35f-f802-4652-8657-91557a516086",
+				"group_ids": [
+					"147afc9d-2819-4197-926d-5b3f92790edc"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-tn-murfreesboro",
+				"region": "TN",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "24d113ea-b698-4043-8715-24486e140f59.nakama2_us-east",
+			"open": true,
+			"lobby_type": "public",
+			"mode": "echo_arena",
+			"level": "mpl_arena_a",
+			"size": 8,
+			"player_count": 7,
+			"players": [
+				{
+					"display_name": "Joah",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "sweetpetitebabyjoah",
+					"discord_id": "1289287302300045414",
+					"user_id": "9e49d5c7-64c6-4105-ba75-cc1cafc762d2",
+					"evr_id": ""
+				},
+				{
+					"display_name": "astro",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "dhehgffdo_98901",
+					"discord_id": "1263149575514886146",
+					"user_id": "ab78e59a-1f10-440e-bea5-4db79e1a1e02",
+					"evr_id": ""
+				},
+				{
+					"display_name": "christmas_on_fent",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "fasfvr",
+					"discord_id": "1223355059170181131",
+					"user_id": "31b94b83-ff7d-45b8-99fa-4efa05d0ebd7",
+					"evr_id": ""
+				},
+				{
+					"display_name": "IloveJesus",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "blue",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "bigroundball_monkemonkemonke",
+					"discord_id": "1147961790873993286",
+					"user_id": "b42a551b-a5b1-4cba-94f6-0c54f441d58f",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Stoner",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "stoner_54913",
+					"discord_id": "1379786060338298962",
+					"user_id": "a15a4bc3-ab5f-4d8f-a9aa-947d6e2b409c",
+					"evr_id": ""
+				},
+				{
+					"display_name": "mikey",
+					"party_id": "1ddcc0bf-f6fd-540f-9e46-65c8a4d8cd58",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "mikeydashh",
+					"discord_id": "841766167357816863",
+					"user_id": "8d87db9b-da64-46b6-9dd8-d51f4288fbf9",
+					"evr_id": ""
+				},
+				{
+					"display_name": "poptown",
+					"party_id": "1ddcc0bf-f6fd-540f-9e46-65c8a4d8cd58",
+					"team": "orange",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "poptown",
+					"discord_id": "793277706821042236",
+					"user_id": "1b57363f-490c-4679-9134-31d31822c190",
+					"evr_id": ""
+				},
+				{
+					"display_name": "dualgame.",
+					"team": "spectator",
+					"join_time_ns": 57495,
+					"username": "dualgame.",
+					"discord_id": "218487022476722176",
+					"user_id": "c58e7c07-5f31-4113-8405-a2f6cdfff448",
+					"evr_id": ""
+				}
+			],
+			"rating_mu": 10,
+			"game_state": {
+				"blue_score": 3,
+				"orange_score": 13,
+				"session_scoreboard": {
+					"game_time_ns": 122992525962,
+					"round_duration_ns": 300000000000,
+					"updated_at": "2025-12-16T01:19:47.544108842Z",
+					"pause_duration_ns": 33000000000
+				},
+				"teams": {
+					"0": {
+						"strength": 40,
+						"predict_win": 0.5710295644773057
+					},
+					"1": {
+						"strength": 30,
+						"predict_win": 0.4289704355226943
+					}
+				}
+			},
+			"team_size": 4,
+			"limit": 16,
+			"player_limit": 8,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "00000000-0000-0000-0000-000000000000",
+			"start_time": "2025-12-16T01:10:16.941179834Z",
+			"created_at": "2025-12-16T01:10:16.894475748Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "9e87510d-5072-4c57-aef3-88b572c4e1a3",
+				"group_ids": [
+					"cd099a49-7ce0-4561-8684-50c0f7600c3f",
+					"147afc9d-2819-4197-926d-5b3f92790edc"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-pa-harrisburg",
+				"region": "PA",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "b30663d6-2554-406c-8eec-43f5a75bd2e5.nakama2_us-east",
+			"open": true,
+			"lobby_type": "public",
+			"mode": "social_2.0",
+			"level": "mpl_lobby_b2",
+			"size": 9,
+			"player_count": 9,
+			"players": [
+				{
+					"display_name": "yp30",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "social",
+					"rating_mu": 11.369135603,
+					"rating_sigma": 3.599293061,
+					"username": "yolkpro30",
+					"discord_id": "1274389920919719937",
+					"user_id": "30accb54-8da1-407a-9a45-8354dad05f4c",
+					"evr_id": ""
+				},
+				{
+					"display_name": "THErevanentofficial",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "social",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "therevanentofficial",
+					"discord_id": "1393986169603231896",
+					"user_id": "1e0eac8b-c266-42ab-a50f-57c95b4dcc64",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Areaxs",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "social",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "areaxs",
+					"discord_id": "387048521322201098",
+					"user_id": "fc1d7de7-ab48-4cb4-864e-a582e4b976eb",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Fr0sty",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "social",
+					"rating_mu": 9.288359149,
+					"rating_sigma": 3.3169016669999998,
+					"username": "colton07529",
+					"discord_id": "1007771270957514933",
+					"user_id": "79497966-7edb-4a88-a641-ca6aaa2e04dc",
+					"evr_id": ""
+				},
+				{
+					"display_name": "JAYKON",
+					"party_id": "93fba741-85d4-5c2b-9aa1-ddc468351888",
+					"team": "social",
+					"rating_mu": 9.413146627,
+					"rating_sigma": 3.409759534,
+					"username": "jaykon_",
+					"discord_id": "494692200177991690",
+					"user_id": "d1ac4953-3be5-4d44-9611-809a7847a949",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Saint Laurent",
+					"party_id": "b194374f-a440-571a-b4ef-180f450118bc",
+					"team": "social",
+					"rating_mu": 14.509956605,
+					"rating_sigma": 3.545831771,
+					"username": "yghad",
+					"discord_id": "725061936349446145",
+					"user_id": "78ee20c6-55cf-459a-bcc5-7bb927d62a72",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Sunshine",
+					"party_id": "db2136ec-4384-58b3-9088-901549667dc0",
+					"team": "social",
+					"rating_mu": 10.438154013,
+					"rating_sigma": 3.575330285,
+					"username": "5un5h1ne_",
+					"discord_id": "832771960743919706",
+					"user_id": "0c4c2e9c-248b-40ef-aeff-674ecba59df2",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Shiny-",
+					"party_id": "db2136ec-4384-58b3-9088-901549667dc0",
+					"team": "social",
+					"rating_mu": 12.83282279,
+					"rating_sigma": 3.527546194,
+					"username": "shinyc3po",
+					"discord_id": "911674843429232671",
+					"user_id": "cf82cc91-ad23-409f-9813-cde6bd0046ea",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Finkle_Is_Einhorn",
+					"party_id": "fb4bf0f3-f14f-51d5-95d8-590da5992130",
+					"team": "social",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "finkle_is_einhorn23",
+					"discord_id": "1447252922021969952",
+					"user_id": "c9eac19e-de50-4f2b-916b-ce4c085910c1",
+					"evr_id": ""
+				}
+			],
+			"rating_mu": 0,
+			"team_size": 12,
+			"limit": 12,
+			"player_limit": 12,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "1e0eac8b-c266-42ab-a50f-57c95b4dcc64",
+			"start_time": "2025-12-16T01:03:15.389712634Z",
+			"created_at": "2025-12-16T01:03:15.384217722Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "8b2fbe3e-16bc-4a10-8473-6edcff68f168",
+				"group_ids": [
+					"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+					"147afc9d-2819-4197-926d-5b3f92790edc"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-ne-plattsmouth",
+				"region": "NE",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "571c49e2-aad6-49c5-bf7f-326bebddc082.nakama2_us-east",
+			"open": true,
+			"lobby_type": "public",
+			"mode": "social_2.0",
+			"level": "mpl_lobby_b2",
+			"size": 12,
+			"player_count": 12,
+			"players": [
+				{
+					"display_name": "Blr41",
+					"party_id": "00000000-0000-0000-0000-000000000000",
+					"team": "social",
+					"rating_mu": 8.477007155,
+					"rating_sigma": 3.392986114,
+					"username": "blr41",
+					"discord_id": "432185944632983552",
+					"user_id": "147cf1d0-c7c4-4308-a343-a21ac49e26f8",
+					"evr_id": ""
+				},
+				{
+					"display_name": "bo nix",
+					"party_id": "2935424b-b4da-5ac6-8e81-7b8875ec60fe",
+					"team": "social",
+					"rating_mu": 10.98382862,
+					"rating_sigma": 3.417707333,
+					"username": "tcaleb",
+					"discord_id": "269225923713171466",
+					"user_id": "d87e5c7b-627b-4f6e-b942-871a0dbf0c63",
+					"evr_id": ""
+				},
+				{
+					"display_name": "ILUVS",
+					"party_id": "3d9a868a-12e9-5c9b-ba18-a93ee8272ea0",
+					"team": "social",
+					"rating_mu": 9.135569606,
+					"rating_sigma": 3.513752596,
+					"username": "samoan._.",
+					"discord_id": "1131057820356317194",
+					"user_id": "7df4bbbd-8efe-4da3-9527-b00f8de66c9d",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Dra(iluvjimin)-",
+					"party_id": "3d9a868a-12e9-5c9b-ba18-a93ee8272ea0",
+					"team": "social",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "akxsh1_rip_27087",
+					"discord_id": "1352764817860988948",
+					"user_id": "2813db7f-73f9-4f18-bbef-1d8fc42ffa01",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Polynesian24",
+					"party_id": "3d9a868a-12e9-5c9b-ba18-a93ee8272ea0",
+					"team": "social",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "nexter_tlc",
+					"discord_id": "1182535055923478549",
+					"user_id": "cf66ba81-04be-46e0-81ff-05ad590c0b70",
+					"evr_id": ""
+				},
+				{
+					"display_name": "BABYGRONK0822",
+					"party_id": "435463f9-2c27-5f6c-b26c-ea311fcc9b21",
+					"team": "social",
+					"rating_mu": 11.057447135,
+					"rating_sigma": 3.34619188,
+					"username": "thehampter883",
+					"discord_id": "1001688962374578196",
+					"user_id": "191e4beb-cec5-4bf7-a6da-99a5d578105f",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Scavar",
+					"party_id": "44239605-de43-574d-95ec-d8aababc3b5a",
+					"team": "social",
+					"rating_mu": 10.474532363,
+					"rating_sigma": 3.440120602,
+					"username": "scavarax",
+					"discord_id": "719852363539677199",
+					"user_id": "be321020-2ee9-429a-a19d-fb735eafe379",
+					"evr_id": ""
+				},
+				{
+					"display_name": "nuvia-",
+					"party_id": "7c351de4-c49f-5407-aa96-bd503c046859",
+					"team": "social",
+					"rating_mu": 11.105705128,
+					"rating_sigma": 3.385159464,
+					"username": "joshjewuh",
+					"discord_id": "487850516747911203",
+					"user_id": "dd96e80f-94a9-4fb7-ae22-424ecaf4743d",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Eucllid",
+					"party_id": "a75fa0ce-d8ba-54cc-b03d-21ce37f83983",
+					"team": "social",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "user90873.",
+					"discord_id": "1249874580374425646",
+					"user_id": "077ae85f-87fa-49dc-8bcb-58b3afa17843",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Shiny-",
+					"party_id": "db2136ec-4384-58b3-9088-901549667dc0",
+					"is_reservation": true,
+					"team": "social",
+					"rating_mu": 12.83282279,
+					"rating_sigma": 3.527546194,
+					"username": "shinyc3po",
+					"discord_id": "911674843429232671",
+					"user_id": "cf82cc91-ad23-409f-9813-cde6bd0046ea",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Geekm0nkey",
+					"party_id": "f37151dd-1a05-5078-8828-7005e6bbbc25",
+					"team": "social",
+					"rating_mu": 9.525005111,
+					"rating_sigma": 3.557584403,
+					"username": "geekm0nkey",
+					"discord_id": "342359368991244290",
+					"user_id": "0cf5b35f-f802-4652-8657-91557a516086",
+					"evr_id": ""
+				},
+				{
+					"display_name": "MrSweat",
+					"party_id": "fb4bf0f3-f14f-51d5-95d8-590da5992130",
+					"team": "social",
+					"rating_mu": 10,
+					"rating_sigma": 3.3333333333333335,
+					"username": "therealbotdad_45351",
+					"discord_id": "1359566004245500035",
+					"user_id": "90d1dda8-93f4-4264-b9c9-bd3e24a13e18",
+					"evr_id": ""
+				}
+			],
+			"rating_mu": 0,
+			"team_size": 12,
+			"limit": 12,
+			"player_limit": 12,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "7df4bbbd-8efe-4da3-9527-b00f8de66c9d",
+			"start_time": "2025-12-16T00:41:43.829493621Z",
+			"created_at": "2025-12-16T00:41:43.800573993Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "9a3b30ae-3f9e-4217-9857-be7b9dfef0e9",
+				"group_ids": [
+					"147afc9d-2819-4197-926d-5b3f92790edc"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "ca-on-kitchener",
+				"region": "ON",
+				"country_code": "CA"
+			}
+		},
+		{
+			"id": "d20b69e3-4036-4989-a6d9-92c5658a2e83.nakama2_us-east",
+			"open": true,
+			"lobby_type": "public",
+			"mode": "social_2.0",
+			"level": "mpl_lobby_b2",
+			"size": 2,
+			"player_count": 2,
+			"players": [
+				{
+					"display_name": "JavaBava",
+					"party_id": "69dbe8b5-17c2-5b9f-9374-6519768b8de2",
+					"team": "social",
+					"rating_mu": 9.386974551,
+					"rating_sigma": 3.355879176,
+					"username": "_onearmvr_",
+					"discord_id": "1324398816765673576",
+					"user_id": "4d4abe1f-9ee2-490a-aa97-1cec14610572",
+					"evr_id": ""
+				},
+				{
+					"display_name": "Shiny-",
+					"party_id": "db2136ec-4384-58b3-9088-901549667dc0",
+					"is_reservation": true,
+					"team": "social",
+					"rating_mu": 12.83282279,
+					"rating_sigma": 3.527546194,
+					"username": "shinyc3po",
+					"discord_id": "911674843429232671",
+					"user_id": "cf82cc91-ad23-409f-9813-cde6bd0046ea",
+					"evr_id": ""
+				}
+			],
+			"rating_mu": 0,
+			"team_size": 12,
+			"limit": 12,
+			"player_limit": 12,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "b1c445ad-43b5-40df-afe6-0cfcdd95ec73",
+			"start_time": "2025-12-16T00:32:56.683782155Z",
+			"created_at": "2025-12-16T00:32:56.6379043Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "3ec373ec-7167-4a2f-ba98-32a4bfa4cdd5",
+				"group_ids": [
+					"147afc9d-2819-4197-926d-5b3f92790edc"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-ca-alameda",
+				"region": "CA",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "876fafd6-edd3-44e5-9fed-862dffffffff.nakama2_us-east",
+			"open": true,
+			"lobby_type": "private",
+			"mode": "echo_arena_private",
+			"level": "mpl_arena_a",
+			"size": 3,
+			"player_count": 3,
+			"rating_mu": 0,
+			"game_state": {
+				"blue_score": 0,
+				"orange_score": 0
+			},
+			"team_size": 16,
+			"limit": 16,
+			"player_limit": 16,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "67d2cb46-c559-44fd-95ee-9a002b9519a8",
+			"start_time": "2025-12-16T01:15:44.308586891Z",
+			"created_at": "2025-12-16T01:15:44.210890071Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "9e87510d-5072-4c57-aef3-88b572c4e1a3",
+				"group_ids": [
+					"cd099a49-7ce0-4561-8684-50c0f7600c3f",
+					"147afc9d-2819-4197-926d-5b3f92790edc"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-pa-harrisburg",
+				"region": "PA",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "2986815a-6238-42ce-a7c3-e0d9ffffffff.nakama2_us-east",
+			"open": true,
+			"lobby_type": "private",
+			"mode": "echo_arena_private",
+			"size": 8,
+			"player_count": 8,
+			"rating_mu": 0,
+			"game_state": {
+				"blue_score": 3,
+				"orange_score": 2
+			},
+			"team_size": 16,
+			"limit": 16,
+			"player_limit": 16,
+			"group_id": "38534eb2-f036-4b22-a7af-9a24c5d390f5",
+			"spawned_by": "d38fd9c2-e7d8-415e-a293-8c497a01b6c7",
+			"start_time": "2025-12-16T01:08:11.590595607Z",
+			"created_at": "2025-12-16T01:07:20.120261014Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "580230ee-3866-446f-8f3f-6cc68e3c8621",
+				"group_ids": [
+					"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+					"c67fa242-31d8-4cb1-937a-ad6763343e21"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-il-chicago",
+				"region": "IL",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "a263dbb1-b6d6-4904-bdff-b34cffffffff.nakama2_us-east",
+			"open": true,
+			"lobby_type": "private",
+			"mode": "echo_arena_private",
+			"size": 8,
+			"player_count": 8,
+			"rating_mu": 0,
+			"game_state": {
+				"blue_score": 18,
+				"orange_score": 20
+			},
+			"team_size": 16,
+			"limit": 16,
+			"player_limit": 16,
+			"group_id": "38534eb2-f036-4b22-a7af-9a24c5d390f5",
+			"spawned_by": "d38fd9c2-e7d8-415e-a293-8c497a01b6c7",
+			"start_time": "2025-12-16T00:50:12.97975516Z",
+			"created_at": "2025-12-16T00:49:54.920152655Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "580230ee-3866-446f-8f3f-6cc68e3c8621",
+				"group_ids": [
+					"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+					"c67fa242-31d8-4cb1-937a-ad6763343e21"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-il-chicago",
+				"region": "IL",
+				"country_code": "US"
+			}
+		},
+		{
+			"id": "95455ee8-f63d-4041-b356-e935ffffffff.nakama2_us-east",
+			"open": true,
+			"lobby_type": "private",
+			"mode": "echo_arena_private",
+			"level": "mpl_arena_a",
+			"size": 3,
+			"player_count": 3,
+			"rating_mu": 0,
+			"game_state": {
+				"blue_score": 9,
+				"orange_score": 24
+			},
+			"team_size": 16,
+			"limit": 16,
+			"player_limit": 16,
+			"group_id": "147afc9d-2819-4197-926d-5b3f92790edc",
+			"spawned_by": "4845bbb4-dcb4-432a-a4d2-afbd21438cb9",
+			"start_time": "2025-12-16T00:36:52.457152948Z",
+			"created_at": "2025-12-16T00:34:22.373418247Z",
+			"broadcaster": {
+				"sid": "00000000-0000-0000-0000-000000000000",
+				"oper": "0cf5b35f-f802-4652-8657-91557a516086",
+				"group_ids": [
+					"147afc9d-2819-4197-926d-5b3f92790edc"
+				],
+				"endpoint": "",
+				"version_lock": "0x134b1272e1c4c0b7",
+				"default_region": "us-tn-murfreesboro",
+				"region": "TN",
+				"country_code": "US"
+			}
+		}
+	],
+	"gameservers": [
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "970732b2-4719-444d-b348-c67335c13cce",
+			"group_ids": [
+				"2d2cb27a-44fe-417e-8651-6ef15c0d2f67"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-il-chicago",
+			"region": "IL",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "3ec373ec-7167-4a2f-ba98-32a4bfa4cdd5",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ca-alameda",
+			"region": "CA",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "09d26c55-23f3-41aa-9dd1-2307c451f312",
+			"group_ids": [
+				"6ec4851f-bcec-464a-b7c1-104bb6793d3f",
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-va-winchester",
+			"region": "VA",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "09d26c55-23f3-41aa-9dd1-2307c451f312",
+			"group_ids": [
+				"6ec4851f-bcec-464a-b7c1-104bb6793d3f",
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-va-winchester",
+			"region": "VA",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "9e87510d-5072-4c57-aef3-88b572c4e1a3",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc",
+				"cd099a49-7ce0-4561-8684-50c0f7600c3f"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-pa-harrisburg",
+			"region": "PA",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "4bc2624a-8306-4e1e-807d-a8a3d08c4f0d",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc",
+				"c67fa242-31d8-4cb1-937a-ad6763343e21"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ar-batesville",
+			"region": "AR",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "9e87510d-5072-4c57-aef3-88b572c4e1a3",
+			"group_ids": [
+				"cd099a49-7ce0-4561-8684-50c0f7600c3f",
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-pa-harrisburg",
+			"region": "PA",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "193dca1a-f844-451d-81ac-5c6b8f206226",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc",
+				"3cc0e1da-1743-48cf-b568-2b4966203379"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "au-nsw-sydney",
+			"region": "NSW",
+			"country_code": "AU"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "0cf5b35f-f802-4652-8657-91557a516086",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-tn-murfreesboro",
+			"region": "TN",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "4bc2624a-8306-4e1e-807d-a8a3d08c4f0d",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc",
+				"c67fa242-31d8-4cb1-937a-ad6763343e21"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ar-batesville",
+			"region": "AR",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "4bc2624a-8306-4e1e-807d-a8a3d08c4f0d",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc",
+				"c67fa242-31d8-4cb1-937a-ad6763343e21"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ar-batesville",
+			"region": "AR",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "0cf5b35f-f802-4652-8657-91557a516086",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-tn-murfreesboro",
+			"region": "TN",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "9defb5bd-4760-40ba-8917-c333caed7fd2",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "je-saintjohn",
+			"country_code": "JE"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "0cf5b35f-f802-4652-8657-91557a516086",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-tn-murfreesboro",
+			"region": "TN",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "9e87510d-5072-4c57-aef3-88b572c4e1a3",
+			"group_ids": [
+				"cd099a49-7ce0-4561-8684-50c0f7600c3f",
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-pa-harrisburg",
+			"region": "PA",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "9defb5bd-4760-40ba-8917-c333caed7fd2",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "je-saintjohn",
+			"country_code": "JE"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "6d76da20-f637-47cb-b9e1-efdee5b1e104",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "gb-eng-maidenhead",
+			"region": "ENG",
+			"country_code": "GB"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "193dca1a-f844-451d-81ac-5c6b8f206226",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc",
+				"3cc0e1da-1743-48cf-b568-2b4966203379"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "au-nsw-sydney",
+			"region": "NSW",
+			"country_code": "AU"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "9defb5bd-4760-40ba-8917-c333caed7fd2",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "je-saintjohn",
+			"country_code": "JE"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "6d76da20-f637-47cb-b9e1-efdee5b1e104",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "gb-eng-maidenhead",
+			"region": "ENG",
+			"country_code": "GB"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "d64eb629-5b1a-4345-80f4-630cd984fbea",
+			"group_ids": [
+				"c67fa242-31d8-4cb1-937a-ad6763343e21",
+				"7710103a-196d-4abc-8f67-cd5154a07821",
+				"147afc9d-2819-4197-926d-5b3f92790edc",
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-pa-allisonpark",
+			"region": "PA",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "3ec373ec-7167-4a2f-ba98-32a4bfa4cdd5",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ca-alameda",
+			"region": "CA",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "8b2fbe3e-16bc-4a10-8473-6edcff68f168",
+			"group_ids": [
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ne-plattsmouth",
+			"region": "NE",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "6d76da20-f637-47cb-b9e1-efdee5b1e104",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "gb-eng-maidenhead",
+			"region": "ENG",
+			"country_code": "GB"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "6d76da20-f637-47cb-b9e1-efdee5b1e104",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "gb-eng-maidenhead",
+			"region": "ENG",
+			"country_code": "GB"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "193dca1a-f844-451d-81ac-5c6b8f206226",
+			"group_ids": [
+				"3cc0e1da-1743-48cf-b568-2b4966203379",
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "au-nsw-sydney",
+			"region": "NSW",
+			"country_code": "AU"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "d64eb629-5b1a-4345-80f4-630cd984fbea",
+			"group_ids": [
+				"7710103a-196d-4abc-8f67-cd5154a07821",
+				"147afc9d-2819-4197-926d-5b3f92790edc",
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+				"c67fa242-31d8-4cb1-937a-ad6763343e21"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-pa-allisonpark",
+			"region": "PA",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "6d76da20-f637-47cb-b9e1-efdee5b1e104",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "gb-eng-maidenhead",
+			"region": "ENG",
+			"country_code": "GB"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "8b2fbe3e-16bc-4a10-8473-6edcff68f168",
+			"group_ids": [
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ne-plattsmouth",
+			"region": "NE",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "580230ee-3866-446f-8f3f-6cc68e3c8621",
+			"group_ids": [
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+				"c67fa242-31d8-4cb1-937a-ad6763343e21"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-il-chicago",
+			"region": "IL",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "9a3b30ae-3f9e-4217-9857-be7b9dfef0e9",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "ca-on-kitchener",
+			"region": "ON",
+			"country_code": "CA"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "0cf5b35f-f802-4652-8657-91557a516086",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-tn-murfreesboro",
+			"region": "TN",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "3ec373ec-7167-4a2f-ba98-32a4bfa4cdd5",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ca-alameda",
+			"region": "CA",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "580230ee-3866-446f-8f3f-6cc68e3c8621",
+			"group_ids": [
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+				"c67fa242-31d8-4cb1-937a-ad6763343e21"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-il-chicago",
+			"region": "IL",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "8b2fbe3e-16bc-4a10-8473-6edcff68f168",
+			"group_ids": [
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ne-plattsmouth",
+			"region": "NE",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "8b2fbe3e-16bc-4a10-8473-6edcff68f168",
+			"group_ids": [
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ne-plattsmouth",
+			"region": "NE",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "0a502c7f-d5a6-4207-947a-1b33565a9fbc",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-la-slidell",
+			"region": "LA",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "0a502c7f-d5a6-4207-947a-1b33565a9fbc",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-la-slidell",
+			"region": "LA",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "970732b2-4719-444d-b348-c67335c13cce",
+			"group_ids": [
+				"2d2cb27a-44fe-417e-8651-6ef15c0d2f67"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-il-chicago",
+			"region": "IL",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "970732b2-4719-444d-b348-c67335c13cce",
+			"group_ids": [
+				"2d2cb27a-44fe-417e-8651-6ef15c0d2f67"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-il-chicago",
+			"region": "IL",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "8b2fbe3e-16bc-4a10-8473-6edcff68f168",
+			"group_ids": [
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ne-plattsmouth",
+			"region": "NE",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "8b2fbe3e-16bc-4a10-8473-6edcff68f168",
+			"group_ids": [
+				"147afc9d-2819-4197-926d-5b3f92790edc",
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ne-plattsmouth",
+			"region": "NE",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "8b2fbe3e-16bc-4a10-8473-6edcff68f168",
+			"group_ids": [
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+				"147afc9d-2819-4197-926d-5b3f92790edc"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-ne-plattsmouth",
+			"region": "NE",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "3976bf9e-5bfa-46ed-ab74-8d2d9b678521",
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-tx-dallas",
+			"region": "TX",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "3976bf9e-5bfa-46ed-ab74-8d2d9b678521",
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-tx-dallas",
+			"region": "TX",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "3976bf9e-5bfa-46ed-ab74-8d2d9b678521",
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-tx-dallas",
+			"region": "TX",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "580230ee-3866-446f-8f3f-6cc68e3c8621",
+			"group_ids": [
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+				"c67fa242-31d8-4cb1-937a-ad6763343e21"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-tx-dallas",
+			"region": "TX",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "580230ee-3866-446f-8f3f-6cc68e3c8621",
+			"group_ids": [
+				"c67fa242-31d8-4cb1-937a-ad6763343e21",
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-tx-dallas",
+			"region": "TX",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "580230ee-3866-446f-8f3f-6cc68e3c8621",
+			"group_ids": [
+				"c67fa242-31d8-4cb1-937a-ad6763343e21",
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-tx-dallas",
+			"region": "TX",
+			"country_code": "US"
+		},
+		{
+			"sid": "00000000-0000-0000-0000-000000000000",
+			"oper": "580230ee-3866-446f-8f3f-6cc68e3c8621",
+			"group_ids": [
+				"38534eb2-f036-4b22-a7af-9a24c5d390f5",
+				"c67fa242-31d8-4cb1-937a-ad6763343e21"
+			],
+			"endpoint": "",
+			"version_lock": "0x134b1272e1c4c0b7",
+			"default_region": "us-il-chicago",
+			"region": "IL",
+			"country_code": "US"
+		}
+	]
+}

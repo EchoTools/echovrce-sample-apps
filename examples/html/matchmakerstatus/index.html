@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matchmaker Status</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-900 text-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+      <!-- Header -->
+      <header class="mb-8">
+        <h1 class="text-3xl font-bold text-center text-cyan-400">
+          Matchmaker Status
+        </h1>
+        <div class="flex items-center justify-center gap-4 mt-2">
+          <p id="lastUpdate" class="text-center text-gray-400">
+            Last updated: --
+          </p>
+          <div class="flex items-center gap-2">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                id="autoRefreshToggle"
+                checked
+                class="w-4 h-4"
+              />
+              <span class="text-sm text-gray-400">Auto-refresh</span>
+            </label>
+            <button
+              id="manualRefresh"
+              class="text-cyan-400 hover:text-cyan-300 p-1"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p id="connectionStatus" class="text-center text-sm mt-1">
+          <span class="inline-block w-2 h-2 rounded-full bg-gray-500 mr-1">
+          </span
+          >Connecting...
+        </p>
+      </header>
+
+      <!-- Stats Overview -->
+      <section class="grid grid-cols-1 md: grid-cols-3 gap-4 mb-8">
+        <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+          <h2 class="text-gray-400 text-sm uppercase tracking-wide">
+            Active Tickets
+          </h2>
+          <p id="ticketCount" class="text-4xl font-bold text-cyan-400 mt-2">
+            --
+          </p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+          <h2 class="text-gray-400 text-sm uppercase tracking-wide">
+            Oldest Ticket Age
+          </h2>
+          <p id="oldestTicket" class="text-4xl font-bold text-yellow-400 mt-2">
+            --
+          </p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+          <h2 class="text-gray-400 text-sm uppercase tracking-wide">
+            Avg Match Time
+          </h2>
+          <p id="avgMatchTime" class="text-4xl font-bold text-green-400 mt-2">
+            --
+          </p>
+        </div>
+      </section>
+
+      <!-- Recent Completions -->
+      <section class="bg-gray-800 rounded-lg p-6 border border-gray-700 mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-gray-200">
+          Recent Completions
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="text-gray-400 text-sm border-b border-gray-700">
+                <th class="pb-2 pr-4">Created</th>
+                <th class="pb-2 pr-4">Completed</th>
+                <th class="pb-2">Duration</th>
+              </tr>
+            </thead>
+            <tbody id="completionsTable" class="text-gray-300">
+              <tr>
+                <td colspan="3" class="py-4 text-center">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Active Queue -->
+      <section class="bg-gray-800 rounded-lg p-6 border border-gray-700 mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-gray-200">
+          Echo Arena Queue (<span id="queueCountArena">0</span>)
+        </h2>
+        <div id="queueListArena" class="space-y-3">
+          <p class="text-gray-400">Loading...</p>
+        </div>
+      </section>
+
+      <section class="bg-gray-800 rounded-lg p-6 border border-gray-700 mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-gray-200">
+          Echo Combat Queue (<span id="queueCountCombat">0</span>)
+        </h2>
+        <div id="queueListCombat" class="space-y-3">
+          <p class="text-gray-400">Loading...</p>
+        </div>
+      </section>
+
+      <!-- Current Matches -->
+      <section class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+        <h2 class="text-xl font-semibold mb-4 text-gray-200">
+          Current Matches (<span id="matchCount">0</span>)
+        </h2>
+        <div id="matchList" class="space-y-4">
+          <p class="text-gray-400">Loading...</p>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const API_URL = "https://g.echovrce.com/status/matchmaker";
+      const MATCHES_API_URL = "https://g.echovrce.com/status/matches";
+      const AVATAR_API_URL = "https://g.echovrce.com/account/lookup";
+      const REFRESH_INTERVAL = 10000;
+      let refreshIntervalId = null;
+      let avatarCache = {};
+
+      // Convert protobuf timestamp to JS Date
+      function protoToDate(ts) {
+        if (!ts) return null;
+        return new Date(ts.seconds * 1000 + ts.nanos / 1000000);
+      }
+
+      // Format duration in seconds to human readable
+      function formatDuration(seconds) {
+        if (seconds < 60) return `${Math.round(seconds)}s`;
+        if (seconds < 3600)
+          return `${Math.floor(seconds / 60)}m ${Math.round(seconds % 60)}s`;
+        return `${Math.floor(seconds / 3600)}h ${Math.floor(
+          (seconds % 3600) / 60
+        )}m`;
+      }
+
+      // Format timestamp to locale string
+      function formatTime(date) {
+        if (!date) return "--";
+        return date.toLocaleTimeString();
+      }
+
+      // Calculate time difference in seconds
+      function timeDiffSeconds(start, end) {
+        const startDate = protoToDate(start);
+        const endDate = protoToDate(end);
+        if (!startDate || !endDate) return 0;
+        return (endDate - startDate) / 1000;
+      }
+
+      // Update connection status indicator
+      function setConnectionStatus(status, color) {
+        const el = document.getElementById("connectionStatus");
+        const colorClass =
+          {
+            green: "bg-green-500",
+            red: "bg-red-500",
+            gray: "bg-gray-500",
+          }[color] || "bg-gray-500";
+
+        el.innerHTML = `<span class="inline-block w-2 h-2 rounded-full ${colorClass} mr-1"></span>${status}`;
+      }
+
+      // Render completions table
+      function renderCompletions(completions) {
+        const tbody = document.getElementById("completionsTable");
+
+        if (!completions || completions.length === 0) {
+          tbody.innerHTML =
+            '<tr><td colspan="3" class="py-4 text-center text-gray-500">No recent completions</td></tr>';
+          return;
+        }
+
+        // Sort by complete_time descending
+        const sorted = [...completions].sort((a, b) => {
+          return (
+            (b.complete_time?.seconds || 0) - (a.complete_time?.seconds || 0)
+          );
+        });
+
+        tbody.innerHTML = sorted
+          .map((c) => {
+            const created = protoToDate(c.create_time);
+            const completed = protoToDate(c.complete_time);
+            const duration = timeDiffSeconds(c.create_time, c.complete_time);
+
+            return `
+          <tr class="border-b border-gray-700/50 hover:bg-gray-700/30">
+            <td class="py-2 pr-4">${formatTime(created)}</td>
+            <td class="py-2 pr-4">${formatTime(completed)}</td>
+            <td class="py-2">
+              <span class="px-2 py-1 bg-green-900/50 text-green-400 rounded text-sm">
+                ${formatDuration(duration)}
+              </span>
+            </td>
+          </tr>
+        `;
+          })
+          .join("");
+      }
+
+      // Parse query string from ticket entry for rating properties
+      function parseTicketQueryRatings(ticketQuery) {
+        const ratings = {};
+        if (!ticketQuery) return ratings;
+
+        try {
+          // The Query field is a string that contains rating properties
+          // Parse it to extract rating_* properties
+          const queryObj =
+            typeof ticketQuery === "string"
+              ? JSON.parse(ticketQuery)
+              : ticketQuery;
+
+          for (const [key, value] of Object.entries(queryObj)) {
+            if (key.startsWith("rating_")) {
+              ratings[key] = parseFloat(value);
+            }
+          }
+        } catch (error) {
+          // If parsing fails, return empty ratings
+          console.debug("Could not parse ticket query:", error);
+        }
+
+        return ratings;
+      }
+
+      // Check if a player matches the rating criteria from a ticket query
+      function matchesTicketRatingCriteria(playerEntry, ticketQuery) {
+        const queryRatings = parseTicketQueryRatings(ticketQuery);
+        if (Object.keys(queryRatings).length === 0) return false;
+
+        for (const [key, value] of Object.entries(queryRatings)) {
+          const playerValue = playerEntry.NumericProperties?.[key];
+          if (
+            playerValue === undefined ||
+            Math.abs(playerValue - value) > 100
+          ) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      // Fetch avatar for a user ID
+      async function fetchAvatar(userId) {
+        if (avatarCache[userId]) {
+          return avatarCache[userId];
+        }
+
+        try {
+          const response = await fetch(`${AVATAR_API_URL}?user_id=${userId}`);
+          if (!response.ok) return null;
+          const data = await response.json();
+          const avatarUrl = data.avatar_url;
+          avatarCache[userId] = avatarUrl;
+          return avatarUrl;
+        } catch (error) {
+          console.error("Error fetching avatar:", error);
+          return null;
+        }
+      }
+
+      // Render queue list with mode filter
+      async function renderQueue(index, mode) {
+        const containerId =
+          mode === "echo_arena" ? "queueListArena" : "queueListCombat";
+        const countId =
+          mode === "echo_arena" ? "queueCountArena" : "queueCountCombat";
+        const container = document.getElementById(containerId);
+
+        if (!index || index.length === 0) {
+          container.innerHTML =
+            '<p class="text-gray-500">No players in queue</p>';
+          document.getElementById(countId).textContent = 0;
+          return;
+        }
+
+        // Filter by mode and sort by oldest first (CreatedAt ascending)
+        const filtered = index
+          .filter((entry) => entry.StringProperties?.game_mode === mode)
+          .sort((a, b) => (a.CreatedAt || 0) - (b.CreatedAt || 0));
+
+        document.getElementById(countId).textContent = filtered.length;
+
+        if (filtered.length === 0) {
+          container.innerHTML =
+            '<p class="text-gray-500">No players in queue</p>';
+          return;
+        }
+
+        // Fetch avatars for all players first
+        const playerDataPromises = filtered.map(async (entry) => {
+          const presence = entry.Presences?.[0];
+          const userId = presence?.user_id;
+          const username = presence?.username || "Unknown";
+          const displayName = entry.StringProperties?.display_name || username;
+          const waitTime = entry.CreatedAt
+            ? formatDuration((Date.now() - entry.CreatedAt / 1000000) / 1000)
+            : "--";
+          const ratingMu =
+            entry.NumericProperties?.rating_mu?.toFixed(1) || "--";
+
+          // Find matching players based on this entry's Query field
+          const matchingPlayers = filtered.filter(
+            (other) =>
+              other !== entry && matchesTicketRatingCriteria(other, entry.Query)
+          );
+
+          // Fetch avatars and details for matching players
+          const matchingPlayersData = await Promise.all(
+            matchingPlayers.map(async (other) => {
+              const otherPresence = other.Presences?.[0];
+              const otherUserId = otherPresence?.user_id;
+              const otherUsername = otherPresence?.username || "Unknown";
+              const otherDisplayName = other.StringProperties?.display_name || otherUsername;
+              const otherRatingMu = other.NumericProperties?.rating_mu?.toFixed(1) || "--";
+              const otherWaitTime = other.CreatedAt
+                ? formatDuration((Date.now() - other.CreatedAt / 1000000) / 1000)
+                : "--";
+              
+              const avatarUrl = otherUserId ? await fetchAvatar(otherUserId) : null;
+              
+              return {
+                displayName: otherDisplayName,
+                username: otherUsername,
+                ratingMu: otherRatingMu,
+                waitTime: otherWaitTime,
+                avatar: avatarUrl
+              };
+            })
+          );
+
+          const mainAvatar = userId ? await fetchAvatar(userId) : null;
+
+          return {
+            displayName,
+            username,
+            waitTime,
+            ratingMu,
+            mainAvatar,
+            matchingPlayers: matchingPlayersData,
+          };
+        });
+
+        const playerData = await Promise.all(playerDataPromises);
+
+        container.innerHTML = playerData
+          .map((data) => {
+            const avatarHtml = data.mainAvatar
+              ? `<img src="${data.mainAvatar}" class="w-10 h-10 rounded-full object-cover" alt="${data.displayName}">`
+              : `<div class="w-10 h-10 bg-cyan-600 rounded-full flex items-center justify-center font-bold">
+                  ${data.displayName.charAt(0).toUpperCase()}
+                 </div>`;
+
+            const matchingPlayersHtml =
+              data.matchingPlayers.length > 0
+                ? `<div class="ml-4 pl-4 border-l-2 border-green-500/50 flex flex-col gap-2">
+                    <p class="text-xs text-green-400 font-semibold uppercase">Matches (${data.matchingPlayers.length})</p>
+                    ${data.matchingPlayers
+                      .map((match) => {
+                        const matchAvatarHtml = match.avatar
+                          ? `<img src="${match.avatar}" class="w-6 h-6 rounded-full object-cover" alt="${match.displayName}">`
+                          : `<div class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-xs font-bold">
+                              ${match.displayName.charAt(0).toUpperCase()}
+                             </div>`;
+                        
+                        return `
+                          <div class="flex items-center gap-2 text-xs">
+                            ${matchAvatarHtml}
+                            <div class="flex-1 min-w-0">
+                              <p class="text-gray-300 truncate">${match.displayName}</p>
+                              <p class="text-gray-500 truncate">@${match.username}</p>
+                            </div>
+                            <div class="flex gap-1">
+                              <span class="px-1.5 py-0.5 bg-blue-900/50 text-blue-300 rounded text-xs">
+                                μ: ${match.ratingMu}
+                              </span>
+                              <span class="px-1.5 py-0.5 bg-yellow-900/50 text-yellow-300 rounded text-xs">
+                                ${match.waitTime}
+                              </span>
+                            </div>
+                          </div>
+                        `;
+                      })
+                      .join("")}
+                   </div>`
+                : "";
+
+            return `
+          <div class="bg-gray-700/50 rounded-lg p-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-3">
+                ${avatarHtml}
+                <div>
+                  <p class="font-medium text-gray-300">${data.displayName}</p>
+                  <p class="text-sm text-gray-500">@${data.username}</p>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2 text-sm">
+                <span class="px-2 py-1 bg-blue-900/50 text-blue-300 rounded">
+                  μ: ${data.ratingMu}
+                </span>
+                <span class="px-2 py-1 bg-yellow-900/50 text-yellow-300 rounded">
+                  ⏱ ${data.waitTime}
+                </span>
+              </div>
+            </div>
+            ${matchingPlayersHtml}
+          </div>
+        `;
+          })
+          .join("");
+      }
+
+      // Calculate average match time from completions
+      function calcAvgMatchTime(completions) {
+        if (!completions || completions.length === 0) return null;
+
+        const durations = completions.map((c) =>
+          timeDiffSeconds(c.create_time, c.complete_time)
+        );
+        const avg = durations.reduce((a, b) => a + b, 0) / durations.length;
+        return avg;
+      }
+
+      // Render current matches
+      async function renderMatches(matches) {
+        const container = document.getElementById("matchList");
+        document.getElementById("matchCount").textContent =
+          matches?.length || 0;
+
+        if (!matches || matches.length === 0) {
+          container.innerHTML =
+            '<p class="text-gray-500">No active matches</p>';
+          return;
+        }
+
+        // Filter for echo_arena and echo_combat only
+        const filtered = matches.filter(
+          (m) => m.mode === "echo_arena" || m.mode === "echo_combat"
+        );
+
+        document.getElementById("matchCount").textContent = filtered.length;
+
+        if (filtered.length === 0) {
+          container.innerHTML =
+            '<p class="text-gray-500">No active Arena or Combat matches</p>';
+          return;
+        }
+
+        // Render each match with player details
+        const matchHtmlPromises = filtered.map(async (match) => {
+          const gameType = match.mode?.replace("_", " ") || "unknown";
+          const sessionId = match.id || "--";
+          const level = match.level || "";
+          const lobbyType = match.lobby_type || "";
+          const gameState = match.game_state;
+          const blueScore = gameState?.blue_score ?? 0;
+          const orangeScore = gameState?.orange_score ?? 0;
+
+          if (!match.players || match.players.length === 0) {
+            return `
+              <div class="bg-gray-700/50 rounded-lg p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <span class="px-3 py-1 bg-purple-900/50 text-purple-300 rounded font-medium">
+                      ${gameType}
+                    </span>
+                    <span class="text-sm text-gray-400">No players</span>
+                  </div>
+                </div>
+                <p class="text-xs text-gray-500 font-mono">${sessionId}</p>
+              </div>
+            `;
+          }
+
+          // Separate players by team, excluding spectators
+          const bluePlayers = match.players.filter((p) => p.team === "blue");
+          const orangePlayers = match.players.filter(
+            (p) => p.team === "orange"
+          );
+
+          // Fetch avatars for all players
+          const playerAvatarPromises = match.players.map(async (player) => {
+            if (!player.user_id || player.team === "spectator") return null;
+            const avatar = await fetchAvatar(player.user_id);
+            return { userId: player.user_id, avatar };
+          });
+
+          const playerAvatars = await Promise.all(playerAvatarPromises);
+          const avatarMap = {};
+          playerAvatars.forEach((pa) => {
+            if (pa) avatarMap[pa.userId] = pa.avatar;
+          });
+
+          // Group players by party and check for wrong-team party members
+          const getPartyInfo = (player, allPlayers) => {
+            const partyId = player.party_id;
+            if (
+              !partyId ||
+              partyId === "00000000-0000-0000-0000-000000000000"
+            ) {
+              return { isInParty: false, hasWrongTeamMember: false };
+            }
+            const partyMembers = allPlayers.filter(
+              (p) => p.party_id === partyId && p.team !== "spectator"
+            );
+            const hasWrongTeamMember = partyMembers.some(
+              (p) => p.team !== player.team
+            );
+            return { isInParty: true, partyId, hasWrongTeamMember };
+          };
+
+          const renderPlayer = (player) => {
+            const avatar = avatarMap[player.user_id];
+            const partyInfo = getPartyInfo(player, match.players);
+            const wrongTeamIndicator = partyInfo.hasWrongTeamMember
+              ? '<span class="text-red-500 font-bold ml-1">✕</span>'
+              : "";
+            const borderClass = partyInfo.isInParty
+              ? "border-2 border-yellow-500"
+              : "";
+
+            const avatarHtml = avatar
+              ? `<img src="${avatar}" class="w-8 h-8 rounded-full object-cover ${borderClass}" alt="${player.display_name}">`
+              : `<div class="w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center text-xs font-bold ${borderClass}">
+                  ${player.display_name?.charAt(0).toUpperCase() || "?"}
+                 </div>`;
+
+            return `
+              <div class="flex items-center gap-2 mb-2">
+                ${avatarHtml}
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium text-gray-300 truncate">${
+                    player.display_name || player.username
+                  }${wrongTeamIndicator}</p>
+                  <p class="text-xs text-gray-500">μ: ${
+                    player.rating_mu?.toFixed(1) || "--"
+                  }</p>
+                </div>
+              </div>
+            `;
+          };
+
+          const bluePlayersHtml = bluePlayers.map(renderPlayer).join("");
+          const orangePlayersHtml = orangePlayers.map(renderPlayer).join("");
+
+          return `
+            <div class="bg-gray-700/50 rounded-lg p-4 mb-4">
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2">
+                  <span class="px-3 py-1 bg-purple-900/50 text-purple-300 rounded font-medium">
+                    ${gameType}
+                  </span>
+                  ${
+                    level
+                      ? `<span class="text-xs text-gray-500">${level}</span>`
+                      : ""
+                  }
+                  ${
+                    lobbyType
+                      ? `<span class="px-2 py-1 bg-gray-600 text-gray-300 rounded text-xs">${lobbyType}</span>`
+                      : ""
+                  }
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded font-bold">${blueScore}</span>
+                  <span class="text-gray-400">-</span>
+                  <span class="px-3 py-1 bg-orange-900/50 text-orange-300 rounded font-bold">${orangeScore}</span>
+                </div>
+              </div>
+              
+              <!-- Players Grid -->
+              <div class="grid grid-cols-2 gap-4 mb-2">
+                <!-- Blue Team -->
+                <div class="bg-blue-900/20 rounded p-3">
+                  <h4 class="text-sm font-semibold text-blue-300 mb-2">Blue Team (${
+                    bluePlayers.length
+                  })</h4>
+                  ${
+                    bluePlayersHtml ||
+                    '<p class="text-xs text-gray-500">No players</p>'
+                  }
+                </div>
+                
+                <!-- Orange Team -->
+                <div class="bg-orange-900/20 rounded p-3">
+                  <h4 class="text-sm font-semibold text-orange-300 mb-2">Orange Team (${
+                    orangePlayers.length
+                  })</h4>
+                  ${
+                    orangePlayersHtml ||
+                    '<p class="text-xs text-gray-500">No players</p>'
+                  }
+                </div>
+              </div>
+              
+              <p class="text-xs text-gray-500 font-mono mt-2">${sessionId}</p>
+            </div>
+          `;
+        });
+
+        const matchHtmlArray = await Promise.all(matchHtmlPromises);
+        container.innerHTML = matchHtmlArray.join("");
+      }
+
+      // Main fetch and update function
+      async function fetchAndUpdate() {
+        try {
+          const response = await fetch(API_URL);
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+
+          const data = await response.json();
+
+          // Update stats
+          document.getElementById("ticketCount").textContent =
+            data.stats?.ticket_count ?? "--";
+
+          const oldestTs = data.stats?.oldest_ticket_create_time;
+          if (oldestTs) {
+            const ageSeconds = (Date.now() - protoToDate(oldestTs)) / 1000;
+            document.getElementById("oldestTicket").textContent =
+              formatDuration(Math.max(0, ageSeconds));
+          } else {
+            document.getElementById("oldestTicket").textContent = "--";
+          }
+
+          const avgTime = calcAvgMatchTime(data.stats?.completions);
+          document.getElementById("avgMatchTime").textContent =
+            avgTime !== null ? formatDuration(avgTime) : "--";
+
+          // Update tables
+          renderCompletions(data.stats?.completions);
+          await renderQueue(data.index, "echo_arena");
+          await renderQueue(data.index, "echo_combat");
+
+          // Fetch and render matches
+          try {
+            const matchesResponse = await fetch(MATCHES_API_URL);
+            if (matchesResponse.ok) {
+              const matchesData = await matchesResponse.json();
+              // The API returns an object with 'labels' property containing the matches
+              const matchesArray = matchesData.labels || [];
+              await renderMatches(matchesArray);
+            }
+          } catch (matchError) {
+            console.error("Error fetching matches:", matchError);
+          }
+
+          // Update status
+          document.getElementById(
+            "lastUpdate"
+          ).textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+          setConnectionStatus("Connected", "green");
+        } catch (error) {
+          console.error("Fetch error:", error);
+          setConnectionStatus(`Error: ${error.message}`, "red");
+        }
+      }
+
+      // Setup auto-refresh toggle
+      function setupAutoRefresh() {
+        const toggle = document.getElementById("autoRefreshToggle");
+        const manualRefreshBtn = document.getElementById("manualRefresh");
+
+        function startAutoRefresh() {
+          if (refreshIntervalId) clearInterval(refreshIntervalId);
+          refreshIntervalId = setInterval(fetchAndUpdate, REFRESH_INTERVAL);
+        }
+
+        function stopAutoRefresh() {
+          if (refreshIntervalId) {
+            clearInterval(refreshIntervalId);
+            refreshIntervalId = null;
+          }
+        }
+
+        toggle.addEventListener("change", (e) => {
+          if (e.target.checked) {
+            startAutoRefresh();
+          } else {
+            stopAutoRefresh();
+          }
+        });
+
+        manualRefreshBtn.addEventListener("click", () => {
+          fetchAndUpdate();
+        });
+
+        // Start auto-refresh by default
+        if (toggle.checked) {
+          startAutoRefresh();
+        }
+      }
+
+      // Initial fetch
+      fetchAndUpdate();
+
+      // Setup auto-refresh
+      setupAutoRefresh();
+    </script>
+  </body>
+</html>
